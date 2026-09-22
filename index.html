@@ -801,5 +801,2512 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         scheduleEnhancement();
       })();
     </script>
+
+    <style id="avesta-retail-kiosk-styles">
+/* AVESTA Retail / Kiosk Load Survey
+   Scoped styles so the original sizing application remains untouched. */
+body.rk-route-active {
+  background: #f4f5f7;
+  color: #14171c;
+}
+
+body.rk-route-active #root {
+  display: none !important;
+}
+
+#retail-kiosk-survey-root {
+  display: none;
+  min-height: 100dvh;
+}
+
+body.rk-route-active #retail-kiosk-survey-root {
+  display: block;
+}
+
+#root .rk-home-launch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  border: 1px solid #f3d6c4;
+  border-left: 4px solid #f26a1b;
+  border-radius: 7px;
+  background: #fef5ef;
+  box-shadow: 0 1px 3px rgba(16, 20, 26, 0.05);
+}
+
+#root .rk-home-launch strong,
+#root .rk-home-launch span {
+  display: block;
+}
+
+#root .rk-home-launch strong {
+  color: #14171c;
+  font-size: 16px;
+}
+
+#root .rk-home-launch span {
+  margin-top: 4px;
+  color: #5a6270;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#root .rk-home-launch a {
+  display: inline-flex;
+  min-height: 40px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 4px;
+  color: #fff;
+  background: #f26a1b;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#root .rk-home-launch a:hover {
+  background: #d95a11;
+}
+
+.rk-shell,
+.rk-shell * {
+  box-sizing: border-box;
+}
+
+.rk-shell {
+  --rk-ink-950: #0d0f12;
+  --rk-ink-900: #14171c;
+  --rk-ink-800: #1c2026;
+  --rk-ink-700: #272c34;
+  --rk-ink-600: #3a414b;
+  --rk-ink-500: #5a6270;
+  --rk-ink-400: #7c8494;
+  --rk-ink-300: #a5acb8;
+  --rk-ink-200: #d0d5dd;
+  --rk-ink-100: #e8ebef;
+  --rk-ink-50: #f4f5f7;
+  --rk-accent: #f26a1b;
+  --rk-accent-600: #d95a11;
+  --rk-accent-100: #fdeade;
+  --rk-accent-50: #fef5ef;
+  --rk-blue: #2f6fd6;
+  --rk-blue-50: #eef4ff;
+  --rk-green: #1f9d63;
+  --rk-green-50: #edf9f3;
+  --rk-amber: #d98a0b;
+  --rk-amber-50: #fff8e8;
+  --rk-red: #d3453d;
+  min-height: 100dvh;
+  background: var(--rk-ink-50);
+  color: var(--rk-ink-900);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.rk-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  gap: 28px;
+  padding: 10px max(24px, calc((100vw - 1400px) / 2));
+  color: #fff;
+  background: var(--rk-ink-950);
+  border-bottom: 1px solid #292f38;
+}
+
+.rk-brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.rk-brand-mark {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 5px;
+  color: #fff;
+  background: var(--rk-accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.rk-brand-copy strong,
+.rk-brand-copy span {
+  display: block;
+  line-height: 1.05;
+}
+
+.rk-brand-copy strong {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+}
+
+.rk-brand-copy span {
+  margin-top: 4px;
+  color: var(--rk-ink-300);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.rk-nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.rk-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: var(--rk-ink-300);
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.rk-nav a:hover,
+.rk-nav a:focus-visible {
+  color: #fff;
+  background: #1c2026;
+}
+
+.rk-nav a[aria-current="page"] {
+  color: #fff;
+  background: #272c34;
+}
+
+.rk-main {
+  width: min(1400px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 30px 0 64px;
+}
+
+.rk-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.rk-eyebrow {
+  margin: 0 0 7px;
+  color: var(--rk-accent-600);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.rk-hero h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.rk-hero p:not(.rk-eyebrow) {
+  max-width: 720px;
+  margin: 10px 0 0;
+  color: var(--rk-ink-500);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.rk-hero-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+}
+
+.rk-mode-switch {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--rk-ink-200);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 20, 26, 0.04);
+}
+
+.rk-mode-switch button {
+  min-height: 36px;
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--rk-ink-500);
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.rk-mode-switch button[aria-pressed="true"] {
+  color: #fff;
+  background: var(--rk-ink-800);
+}
+
+.rk-btn {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border: 1px solid var(--rk-ink-200);
+  border-radius: 4px;
+  color: var(--rk-ink-800);
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+}
+
+.rk-btn:hover {
+  border-color: var(--rk-ink-400);
+  background: var(--rk-ink-50);
+}
+
+.rk-btn-primary {
+  border-color: var(--rk-accent);
+  color: #fff;
+  background: var(--rk-accent);
+}
+
+.rk-btn-primary:hover {
+  border-color: var(--rk-accent-600);
+  background: var(--rk-accent-600);
+}
+
+.rk-btn-dark {
+  border-color: var(--rk-ink-800);
+  color: #fff;
+  background: var(--rk-ink-800);
+}
+
+.rk-btn-danger {
+  border-color: #f1c1be;
+  color: var(--rk-red);
+  background: #fff;
+}
+
+.rk-btn-small {
+  min-height: 32px;
+  padding: 5px 9px;
+  font-size: 12px;
+}
+
+.rk-card {
+  border: 1px solid var(--rk-ink-100);
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 20, 26, 0.04), 0 1px 3px rgba(16, 20, 26, 0.04);
+}
+
+.rk-setup {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.rk-field {
+  min-width: 0;
+}
+
+.rk-field label,
+.rk-field > span:first-child {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--rk-ink-600);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.rk-field input,
+.rk-field select,
+.rk-name-input,
+.rk-inline-input {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--rk-ink-200);
+  border-radius: 4px;
+  color: var(--rk-ink-900);
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.rk-field input:focus,
+.rk-field select:focus,
+.rk-name-input:focus,
+.rk-inline-input:focus {
+  border-color: var(--rk-accent);
+  box-shadow: 0 0 0 3px rgba(242, 106, 27, 0.12);
+}
+
+.rk-field-note {
+  display: block;
+  margin-top: 5px;
+  color: var(--rk-ink-400);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.rk-ambient-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rk-ambient-line select {
+  flex: 1 1 auto;
+}
+
+.rk-ambient-chip {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: #81520a;
+  background: var(--rk-amber-50);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rk-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(330px, 0.72fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.rk-column {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.rk-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px 0;
+}
+
+.rk-section-head h2,
+.rk-section-head h3 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.015em;
+}
+
+.rk-section-head p {
+  margin: 5px 0 0;
+  color: var(--rk-ink-500);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.rk-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 16px 18px 18px;
+}
+
+.rk-preset {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 1px solid var(--rk-ink-100);
+  border-radius: 5px;
+  color: var(--rk-ink-800);
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
+}
+
+.rk-preset:hover {
+  border-color: var(--rk-accent);
+  background: var(--rk-accent-50);
+  transform: translateY(-1px);
+}
+
+.rk-preset-code,
+.rk-equipment-code {
+  display: grid;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 4px;
+  color: var(--rk-ink-700);
+  background: var(--rk-ink-100);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+}
+
+.rk-preset strong,
+.rk-preset small {
+  display: block;
+}
+
+.rk-preset strong {
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.rk-preset small {
+  margin-top: 3px;
+  color: var(--rk-ink-400);
+  font-size: 10px;
+}
+
+.rk-equipment-list {
+  display: grid;
+  gap: 11px;
+  padding: 16px 18px 18px;
+}
+
+.rk-empty {
+  padding: 40px 20px;
+  border: 1px dashed var(--rk-ink-200);
+  border-radius: 6px;
+  color: var(--rk-ink-500);
+  background: var(--rk-ink-50);
+  text-align: center;
+}
+
+.rk-empty strong,
+.rk-empty span {
+  display: block;
+}
+
+.rk-empty span {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.rk-equipment-card {
+  overflow: hidden;
+  border: 1px solid var(--rk-ink-100);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.rk-equipment-card[data-warning="true"] {
+  border-color: #edc781;
+}
+
+.rk-equipment-top {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #fbfbfc;
+  border-bottom: 1px solid var(--rk-ink-100);
+}
+
+.rk-equipment-title {
+  min-width: 0;
+}
+
+.rk-name-input {
+  min-height: 34px;
+  padding: 5px 8px;
+  font-weight: 700;
+}
+
+.rk-equipment-meta {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--rk-ink-400);
+  font-size: 11px;
+}
+
+.rk-equipment-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rk-icon-btn {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid var(--rk-ink-200);
+  border-radius: 4px;
+  color: var(--rk-ink-500);
+  background: #fff;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.rk-icon-btn:hover {
+  color: var(--rk-ink-900);
+  border-color: var(--rk-ink-400);
+}
+
+.rk-icon-btn[data-action="remove"]:hover {
+  color: var(--rk-red);
+  border-color: #e4aaa6;
+}
+
+.rk-simple-row {
+  display: grid;
+  grid-template-columns: 126px 126px minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 11px;
+  padding: 12px;
+}
+
+.rk-quantity {
+  display: grid;
+  grid-template-columns: 34px minmax(44px, 1fr) 34px;
+}
+
+.rk-quantity button,
+.rk-quantity input {
+  height: 40px;
+  border: 1px solid var(--rk-ink-200);
+  background: #fff;
+  font: inherit;
+  text-align: center;
+}
+
+.rk-quantity button {
+  color: var(--rk-ink-600);
+  cursor: pointer;
+}
+
+.rk-quantity button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.rk-quantity button:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.rk-quantity input {
+  width: 100%;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  font-weight: 700;
+}
+
+.rk-spec-strip {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-self: center;
+  padding-bottom: 3px;
+}
+
+.rk-spec-strip span {
+  padding: 5px 7px;
+  border-radius: 3px;
+  color: var(--rk-ink-600);
+  background: var(--rk-ink-50);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.rk-photo-control {
+  align-self: center;
+}
+
+.rk-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.rk-photo-label {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px dashed var(--rk-ink-300);
+  border-radius: 4px;
+  color: var(--rk-ink-600);
+  background: #fff;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.rk-photo-label:hover {
+  border-color: var(--rk-accent);
+  color: var(--rk-accent-600);
+  background: var(--rk-accent-50);
+}
+
+.rk-advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 12px 12px;
+}
+
+.rk-advanced-grid .rk-field input,
+.rk-advanced-grid .rk-field select {
+  min-height: 36px;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+.rk-equipment-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  border-top: 1px solid var(--rk-ink-100);
+  color: var(--rk-ink-500);
+  background: var(--rk-ink-50);
+  font-size: 11px;
+}
+
+.rk-equipment-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.rk-equipment-kpis strong {
+  margin-left: 4px;
+  color: var(--rk-ink-800);
+  font-variant-numeric: tabular-nums;
+}
+
+.rk-photo-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rk-photo-preview img {
+  width: 38px;
+  height: 30px;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.rk-photo-preview span {
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rk-text-button {
+  padding: 0;
+  border: 0;
+  color: var(--rk-red);
+  background: transparent;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.rk-results {
+  position: sticky;
+  top: 84px;
+  overflow: hidden;
+}
+
+.rk-result-head {
+  padding: 18px;
+  color: #fff;
+  background: var(--rk-ink-900);
+}
+
+.rk-result-head .rk-eyebrow {
+  color: #ff9d65;
+}
+
+.rk-result-head h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.rk-result-head p {
+  margin: 6px 0 0;
+  color: var(--rk-ink-300);
+  font-size: 12px;
+}
+
+.rk-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rk-ink-100);
+}
+
+.rk-result-metric {
+  min-height: 110px;
+  padding: 16px;
+  background: #fff;
+}
+
+.rk-result-metric span,
+.rk-result-metric strong,
+.rk-result-metric small {
+  display: block;
+}
+
+.rk-result-metric span {
+  color: var(--rk-ink-500);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rk-result-metric strong {
+  margin-top: 8px;
+  color: var(--rk-ink-900);
+  font-size: 25px;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.rk-result-metric small {
+  margin-top: 5px;
+  color: var(--rk-ink-400);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.rk-recommendation {
+  padding: 18px;
+  border-top: 1px solid var(--rk-ink-100);
+  background: var(--rk-accent-50);
+}
+
+.rk-recommendation h3 {
+  margin: 0 0 13px;
+  color: var(--rk-accent-600);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rk-rec-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3d6c4;
+}
+
+.rk-rec-line:last-of-type {
+  border-bottom: 0;
+}
+
+.rk-rec-line span {
+  color: var(--rk-ink-600);
+  font-size: 12px;
+}
+
+.rk-rec-line strong {
+  color: var(--rk-ink-900);
+  font-size: 17px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.rk-rec-note {
+  margin: 11px 0 0;
+  color: var(--rk-ink-500);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.rk-assumptions {
+  padding-bottom: 18px;
+}
+
+.rk-assumption-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  padding: 16px 18px 0;
+}
+
+.rk-range-row {
+  grid-column: 1 / -1;
+}
+
+.rk-range-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 52px;
+  align-items: center;
+  gap: 10px;
+}
+
+.rk-range-wrap input[type="range"] {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  accent-color: var(--rk-accent);
+  box-shadow: none;
+}
+
+.rk-range-value {
+  padding: 6px;
+  border-radius: 3px;
+  color: var(--rk-ink-800);
+  background: var(--rk-ink-50);
+  font-size: 12px;
+  font-weight: 750;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.rk-check {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--rk-ink-600);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.rk-check input {
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
+  accent-color: var(--rk-accent);
+}
+
+.rk-insights {
+  padding: 15px 18px 18px;
+}
+
+.rk-insights ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rk-insights li {
+  display: flex;
+  gap: 8px;
+  color: var(--rk-ink-600);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.rk-insights li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: var(--rk-green);
+}
+
+.rk-insights li[data-level="warning"]::before {
+  background: var(--rk-amber);
+}
+
+.rk-status {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 100;
+  max-width: min(360px, calc(100vw - 36px));
+  padding: 11px 14px;
+  border-radius: 5px;
+  color: #fff;
+  background: var(--rk-ink-800);
+  box-shadow: 0 10px 30px rgba(16, 20, 26, 0.24);
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.rk-status[data-show="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rk-footer {
+  margin-top: 24px;
+  color: var(--rk-ink-400);
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.rk-shell[data-mode="simple"] .rk-advanced {
+  display: none !important;
+}
+
+.rk-shell[data-mode="advanced"] .rk-simple-only {
+  display: none !important;
+}
+
+.rk-shell[data-mode="advanced"] .rk-simple-row {
+  grid-template-columns: 126px 126px minmax(0, 1fr) auto;
+}
+
+.rk-no-spin::-webkit-inner-spin-button,
+.rk-no-spin::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.rk-no-spin {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.rk-shell button:focus-visible,
+.rk-shell a:focus-visible,
+.rk-shell input:focus-visible,
+.rk-shell select:focus-visible {
+  outline: 2px solid var(--rk-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1120px) {
+  .rk-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 11px 18px;
+  }
+
+  .rk-nav {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
+  }
+
+  .rk-nav a {
+    min-height: 34px;
+    padding: 6px 9px;
+    font-size: 12px;
+  }
+
+  .rk-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rk-results {
+    position: static;
+  }
+
+  .rk-preset-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .rk-advanced-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 780px) {
+  .rk-main {
+    width: min(100% - 20px, 1400px);
+    padding-top: 18px;
+  }
+
+  .rk-hero {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .rk-hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .rk-mode-switch {
+    flex: 1 1 auto;
+  }
+
+  .rk-mode-switch button {
+    flex: 1 1 50%;
+  }
+
+  .rk-setup {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rk-preset-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rk-advanced-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rk-simple-row,
+  .rk-shell[data-mode="advanced"] .rk-simple-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rk-spec-strip {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .rk-photo-control {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 500px) {
+  #root .rk-home-launch {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .rk-header {
+    position: static;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .rk-main {
+    width: min(100% - 16px, 1400px);
+  }
+
+  .rk-hero h1 {
+    font-size: 29px;
+  }
+
+  .rk-hero-actions > .rk-btn {
+    flex: 1 1 auto;
+  }
+
+  .rk-setup,
+  .rk-assumption-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rk-range-row,
+  .rk-check {
+    grid-column: auto;
+  }
+
+  .rk-preset-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rk-preset {
+    min-height: 56px;
+  }
+
+  .rk-section-head {
+    flex-direction: column;
+  }
+
+  .rk-equipment-top {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .rk-equipment-actions {
+    grid-column: 2;
+  }
+
+  .rk-simple-row,
+  .rk-shell[data-mode="advanced"] .rk-simple-row,
+  .rk-advanced-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rk-photo-control {
+    justify-self: stretch;
+  }
+
+  .rk-photo-label {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .rk-result-metric {
+    min-height: 100px;
+    padding: 13px;
+  }
+
+  .rk-result-metric strong {
+    font-size: 22px;
+  }
+
+  .rk-equipment-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media print {
+  body.rk-route-active {
+    background: #fff;
+  }
+
+  .rk-header,
+  .rk-hero-actions,
+  .rk-preset-card,
+  .rk-equipment-actions,
+  .rk-photo-control,
+  .rk-status,
+  .rk-btn,
+  .rk-footer {
+    display: none !important;
+  }
+
+  .rk-main {
+    width: 100%;
+    padding: 0;
+  }
+
+  .rk-hero {
+    margin-bottom: 12px;
+  }
+
+  .rk-workspace {
+    grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.7fr);
+  }
+
+  .rk-card,
+  .rk-equipment-card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .rk-results {
+    position: static;
+  }
+}
+
+    </style>
+    <script id="avesta-retail-kiosk-module">
+(() => {
+  "use strict";
+
+  const ROUTE = "#/retail-kiosk";
+  const STORAGE_KEY = "avesta-retail-kiosk-survey-v1";
+  const ORIGINAL_TITLE = document.title;
+  const STANDARD_INVERTERS = [1, 2, 3, 5, 6, 8, 10, 12, 15, 20, 30, 40, 50, 75, 100, 125];
+
+  const AMBIENT_PRESETS = {
+    cairo_indoor_ac: { label: "Cairo · Indoor air-conditioned", c: 25 },
+    cairo_indoor: { label: "Cairo · Indoor non-AC", c: 32 },
+    cairo_shaded: { label: "Cairo · Outdoor shaded", c: 38 },
+    cairo_exposed: { label: "Cairo · Outdoor exposed", c: 43 },
+    giza_indoor: { label: "Giza · Indoor non-AC", c: 33 },
+    giza_summer: { label: "Giza · Hot summer / exposed", c: 45 },
+    custom: { label: "Custom ambient", c: 35 },
+  };
+
+  const PRESETS = [
+    {
+      id: "countertop_beverage",
+      label: "Countertop Beverage Cooler",
+      code: "BC",
+      category: "Beverage cooling",
+      voltage: 230,
+      watts: 200,
+      runningA: 1.1,
+      startA: 5,
+      duty: 50,
+      hours: 24,
+      temperature: "2 to 10°C",
+      refrigeration: true,
+    },
+    {
+      id: "beverage_single_large",
+      label: "Large Single-Door Beverage Cooler",
+      code: "BC",
+      category: "Beverage cooling",
+      voltage: 230,
+      watts: 450,
+      runningA: 2.4,
+      startA: 12,
+      duty: 55,
+      hours: 24,
+      temperature: "2 to 8°C",
+      refrigeration: true,
+    },
+    {
+      id: "coke_pepsi_single",
+      label: "Coca-Cola / Pepsi Single-Door Cooler",
+      code: "CP",
+      category: "Branded beverage cooling",
+      voltage: 230,
+      watts: 350,
+      runningA: 1.9,
+      startA: 10,
+      duty: 50,
+      hours: 24,
+      temperature: "2 to 8°C",
+      refrigeration: true,
+    },
+    {
+      id: "coke_pepsi_double",
+      label: "Coca-Cola / Pepsi Double-Door Cooler",
+      code: "CP",
+      category: "Branded beverage cooling",
+      voltage: 230,
+      watts: 600,
+      runningA: 3.3,
+      startA: 16,
+      duty: 55,
+      hours: 24,
+      temperature: "2 to 8°C",
+      refrigeration: true,
+    },
+    {
+      id: "chocolate_cooler",
+      label: "Chocolate / Snack Cooler",
+      code: "CH",
+      category: "Display cooling",
+      voltage: 230,
+      watts: 250,
+      runningA: 1.4,
+      startA: 7,
+      duty: 45,
+      hours: 24,
+      temperature: "4 to 12°C",
+      refrigeration: true,
+    },
+    {
+      id: "chest_freezer_small",
+      label: "Small Chest Freezer",
+      code: "CF",
+      category: "Freezers",
+      voltage: 230,
+      watts: 200,
+      runningA: 1.1,
+      startA: 8,
+      duty: 45,
+      hours: 24,
+      temperature: "-18 to -24°C",
+      refrigeration: true,
+    },
+    {
+      id: "chest_freezer_medium",
+      label: "Medium Chest Freezer",
+      code: "CF",
+      category: "Freezers",
+      voltage: 230,
+      watts: 250,
+      runningA: 1.4,
+      startA: 10,
+      duty: 50,
+      hours: 24,
+      temperature: "-18 to -24°C",
+      refrigeration: true,
+    },
+    {
+      id: "ice_cream_freezer",
+      label: "Branded Ice-Cream Freezer",
+      code: "IF",
+      category: "Freezers",
+      voltage: 230,
+      watts: 400,
+      runningA: 2.2,
+      startA: 15,
+      duty: 60,
+      hours: 24,
+      temperature: "-18 to -24°C",
+      refrigeration: true,
+    },
+    {
+      id: "upright_freezer",
+      label: "Upright Glass-Door Freezer",
+      code: "UF",
+      category: "Freezers",
+      voltage: 230,
+      watts: 600,
+      runningA: 3.3,
+      startA: 18,
+      duty: 60,
+      hours: 24,
+      temperature: "-18 to -22°C",
+      refrigeration: true,
+    },
+    {
+      id: "pastry_display",
+      label: "Pastry / Cake Display",
+      code: "PD",
+      category: "Refrigerated display",
+      voltage: 230,
+      watts: 450,
+      runningA: 2.4,
+      startA: 12,
+      duty: 55,
+      hours: 16,
+      temperature: "2 to 8°C",
+      refrigeration: true,
+    },
+    {
+      id: "pastry_display_large",
+      label: "Large Pastry Display",
+      code: "PD",
+      category: "Refrigerated display",
+      voltage: 230,
+      watts: 750,
+      runningA: 4.1,
+      startA: 20,
+      duty: 60,
+      hours: 16,
+      temperature: "2 to 8°C",
+      refrigeration: true,
+    },
+    {
+      id: "gelato_display",
+      label: "Gelato Display Freezer",
+      code: "GD",
+      category: "Refrigerated display",
+      voltage: 230,
+      watts: 900,
+      runningA: 4.9,
+      startA: 25,
+      duty: 70,
+      hours: 16,
+      temperature: "-15 to -22°C",
+      refrigeration: true,
+    },
+    {
+      id: "multideck_small",
+      label: "Small Open Multideck",
+      code: "MD",
+      category: "Open display cooling",
+      voltage: 230,
+      watts: 1200,
+      runningA: 6.5,
+      startA: 25,
+      duty: 75,
+      hours: 24,
+      temperature: "2 to 8°C",
+      refrigeration: true,
+    },
+    {
+      id: "multideck_medium",
+      label: "Medium Open Multideck",
+      code: "MD",
+      category: "Open display cooling",
+      voltage: 230,
+      watts: 1800,
+      runningA: 9.8,
+      startA: 35,
+      duty: 80,
+      hours: 24,
+      temperature: "2 to 8°C",
+      refrigeration: true,
+    },
+    {
+      id: "lighting",
+      label: "LED Lighting",
+      code: "LT",
+      category: "General loads",
+      voltage: 230,
+      watts: 15,
+      runningA: 0.07,
+      startA: 0.07,
+      duty: 100,
+      hours: 10,
+      temperature: "N/A",
+      refrigeration: false,
+    },
+    {
+      id: "cctv_pos",
+      label: "CCTV / POS / Router",
+      code: "IT",
+      category: "General loads",
+      voltage: 230,
+      watts: 100,
+      runningA: 0.55,
+      startA: 0.7,
+      duty: 100,
+      hours: 24,
+      temperature: "N/A",
+      refrigeration: false,
+    },
+    {
+      id: "ac_split",
+      label: "Split Air Conditioner · 1.5 HP",
+      code: "AC",
+      category: "Air conditioning",
+      voltage: 230,
+      watts: 1500,
+      runningA: 8.2,
+      startA: 25,
+      duty: 70,
+      hours: 10,
+      temperature: "22 to 24°C",
+      refrigeration: false,
+    },
+    {
+      id: "custom",
+      label: "Custom Load",
+      code: "CU",
+      category: "Custom",
+      voltage: 230,
+      watts: 100,
+      runningA: 0.55,
+      startA: 0.55,
+      duty: 100,
+      hours: 8,
+      temperature: "N/A",
+      refrigeration: false,
+    },
+  ];
+
+  const BUSINESS_TEMPLATES = {
+    kiosk: [
+      ["coke_pepsi_single", 1],
+      ["chocolate_cooler", 1],
+      ["ice_cream_freezer", 1],
+      ["lighting", 6],
+      ["cctv_pos", 1],
+    ],
+    mini_market: [
+      ["coke_pepsi_double", 1],
+      ["upright_freezer", 1],
+      ["chest_freezer_medium", 1],
+      ["pastry_display", 1],
+      ["lighting", 12],
+      ["cctv_pos", 1],
+      ["ac_split", 1],
+    ],
+    grocery: [
+      ["beverage_single_large", 1],
+      ["chest_freezer_medium", 2],
+      ["upright_freezer", 1],
+      ["lighting", 8],
+      ["cctv_pos", 1],
+      ["ac_split", 1],
+    ],
+    cafe: [
+      ["beverage_single_large", 1],
+      ["pastry_display", 1],
+      ["gelato_display", 1],
+      ["lighting", 10],
+      ["cctv_pos", 1],
+      ["ac_split", 1],
+    ],
+    supermarket: [
+      ["coke_pepsi_double", 2],
+      ["multideck_medium", 2],
+      ["upright_freezer", 2],
+      ["chest_freezer_medium", 2],
+      ["lighting", 30],
+      ["cctv_pos", 2],
+      ["ac_split", 2],
+    ],
+  };
+
+  const BUSINESS_LABELS = {
+    kiosk: "Kiosk",
+    mini_market: "Mini market",
+    grocery: "Grocery",
+    cafe: "Café / bakery",
+    supermarket: "Supermarket",
+  };
+
+  const numeric = (value, fallback = 0) => {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : fallback;
+  };
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, numeric(value, min)));
+  const round = (value, decimals = 2) => Number(numeric(value).toFixed(decimals));
+  const makeId = () => `rk-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  const esc = (value) =>
+    String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  const getPreset = (id) => PRESETS.find((preset) => preset.id === id) || PRESETS.at(-1);
+
+  const createItem = (presetId, overrides = {}) => {
+    const preset = getPreset(presetId);
+    return {
+      uid: makeId(),
+      presetId: preset.id,
+      name: preset.label,
+      code: preset.code,
+      category: preset.category,
+      quantity: 1,
+      voltage: preset.voltage,
+      frequency: 50,
+      watts: preset.watts,
+      runningA: preset.runningA,
+      startA: preset.startA,
+      duty: preset.duty,
+      hours: preset.hours,
+      temperature: preset.temperature,
+      ambientC: 32,
+      refrigeration: preset.refrigeration,
+      photo: "",
+      photoName: "",
+      ...overrides,
+    };
+  };
+
+  const templateItems = (business, ambientC) =>
+    (BUSINESS_TEMPLATES[business] || BUSINESS_TEMPLATES.kiosk).map(([presetId, quantity]) =>
+      createItem(presetId, { quantity, ambientC }),
+    );
+
+  const defaultState = () => ({
+    version: 1,
+    mode: "simple",
+    business: "kiosk",
+    location: "Cairo",
+    ambientPreset: "cairo_indoor",
+    ambientC: 32,
+    frequency: 50,
+    diversity: 70,
+    dod: 90,
+    efficiency: 90,
+    autonomyHours: 8,
+    inverterMargin: 20,
+    batteryModule: 5.3,
+    applyAmbient: true,
+    items: templateItems("kiosk", 32),
+  });
+
+  const normalizeItem = (item) => {
+    const preset = getPreset(item?.presetId || "custom");
+    return createItem(preset.id, {
+      ...item,
+      uid: item?.uid || makeId(),
+      name: item?.name || preset.label,
+      code: item?.code || preset.code,
+      category: item?.category || preset.category,
+      refrigeration: Boolean(item?.refrigeration ?? preset.refrigeration),
+      photo: typeof item?.photo === "string" && item.photo.startsWith("data:image/") ? item.photo : "",
+      photoName: item?.photoName || "",
+    });
+  };
+
+  const loadState = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+      if (!saved || saved.version !== 1 || !Array.isArray(saved.items)) return defaultState();
+      const base = defaultState();
+      return {
+        ...base,
+        ...saved,
+        mode: saved.mode === "advanced" ? "advanced" : "simple",
+        items: saved.items.map(normalizeItem),
+      };
+    } catch {
+      return defaultState();
+    }
+  };
+
+  let state = loadState();
+  let statusTimer = 0;
+
+  const saveState = () => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch {
+      const withoutPhotos = {
+        ...state,
+        items: state.items.map(({ photo, ...item }) => ({ ...item, photo: "" })),
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(withoutPhotos));
+      } catch {
+        // The survey remains fully usable for the current browser session.
+      }
+    }
+  };
+
+  const ambientAdjustedDuty = (item) => {
+    const baseDuty = clamp(item.duty, 0, 100);
+    if (!state.applyAmbient || !item.refrigeration) return baseDuty;
+    const correction = Math.max(0, numeric(item.ambientC, state.ambientC) - 30) * 1.5;
+    return clamp(baseDuty + correction, 0, 100);
+  };
+
+  const calculate = (sourceState = state) => {
+    const diversity = clamp(sourceState.diversity, 0, 100) / 100;
+    let connectedW = 0;
+    let incrementalStartW = 0;
+    let dailyKwh = 0;
+    let refrigerationKwh = 0;
+    let photographed = 0;
+
+    const itemResults = sourceState.items.map((item) => {
+      const quantity = clamp(item.quantity, 0, 999);
+      const watts = clamp(item.watts, 0, 1000000);
+      const voltage = clamp(item.voltage, 1, 1000);
+      const startA = clamp(item.startA, 0, 10000);
+      const hours = clamp(item.hours, 0, 24);
+      const duty = sourceState.applyAmbient && item.refrigeration
+        ? clamp(clamp(item.duty, 0, 100) + Math.max(0, numeric(item.ambientC, sourceState.ambientC) - 30) * 1.5, 0, 100)
+        : clamp(item.duty, 0, 100);
+      const itemConnectedW = quantity * watts;
+      const startWEach = Math.max(watts, voltage * startA);
+      const itemIncrementalStartW = quantity * Math.max(0, startWEach - watts);
+      const itemDailyKwh = (quantity * watts * hours * (duty / 100)) / 1000;
+
+      connectedW += itemConnectedW;
+      incrementalStartW += itemIncrementalStartW;
+      dailyKwh += itemDailyKwh;
+      if (item.refrigeration) refrigerationKwh += itemDailyKwh;
+      if (item.photo) photographed += 1;
+
+      return {
+        uid: item.uid,
+        connectedKw: itemConnectedW / 1000,
+        dailyKwh: itemDailyKwh,
+        effectiveDuty: duty,
+        startKvaEach: startWEach / 1000,
+      };
+    });
+
+    const connectedKw = connectedW / 1000;
+    const peakKw = (connectedW + incrementalStartW * diversity) / 1000;
+    const autonomyHours = clamp(sourceState.autonomyHours, 0, 168);
+    const backupEnergyKwh = dailyKwh * (autonomyHours / 24);
+    const dod = clamp(sourceState.dod, 1, 100) / 100;
+    const efficiency = clamp(sourceState.efficiency, 1, 100) / 100;
+    const nominalBatteryKwh = backupEnergyKwh / dod / efficiency;
+    const moduleKwh = clamp(sourceState.batteryModule, 0.1, 10000);
+    const moduleCount = nominalBatteryKwh > 0 ? Math.ceil(nominalBatteryKwh / moduleKwh) : 0;
+    const recommendedBatteryKwh = moduleCount * moduleKwh;
+    const inverterBasisKw = Math.max(connectedKw, peakKw) * (1 + clamp(sourceState.inverterMargin, 0, 200) / 100);
+    const standardInverterKw =
+      inverterBasisKw <= 0
+        ? 0
+        : STANDARD_INVERTERS.find((size) => size >= inverterBasisKw) || Math.ceil(inverterBasisKw / 25) * 25;
+    const averageKw = dailyKwh / 24;
+    const estimatedRuntimeHours =
+      averageKw > 0 ? (recommendedBatteryKwh * dod * efficiency) / averageKw : 0;
+
+    return {
+      connectedKw,
+      peakKw,
+      dailyKwh,
+      refrigerationKwh,
+      autonomyHours,
+      backupEnergyKwh,
+      nominalBatteryKwh,
+      moduleKwh,
+      moduleCount,
+      recommendedBatteryKwh,
+      inverterBasisKw,
+      standardInverterKw,
+      estimatedRuntimeHours,
+      peakCurrentA: peakKw > 0 ? (peakKw * 1000) / 230 : 0,
+      photographed,
+      itemResults,
+    };
+  };
+
+  const fmt = (value, decimals = 1) =>
+    Number.isFinite(value)
+      ? value.toLocaleString(undefined, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        })
+      : "0.0";
+
+  const businessOptions = () =>
+    Object.entries(BUSINESS_LABELS)
+      .map(([value, label]) => `<option value="${value}"${state.business === value ? " selected" : ""}>${esc(label)}</option>`)
+      .join("");
+
+  const ambientOptions = () =>
+    Object.entries(AMBIENT_PRESETS)
+      .map(
+        ([value, preset]) =>
+          `<option value="${value}"${state.ambientPreset === value ? " selected" : ""}>${esc(preset.label)}</option>`,
+      )
+      .join("");
+
+  const presetCards = () =>
+    PRESETS.map(
+      (preset) => `
+        <button class="rk-preset" type="button" data-action="add-preset" data-preset="${preset.id}">
+          <span class="rk-preset-code">${esc(preset.code)}</span>
+          <span>
+            <strong>${esc(preset.label)}</strong>
+            <small>${fmt(preset.watts, 0)} W · ${esc(preset.category)}</small>
+          </span>
+        </button>`,
+    ).join("");
+
+  const field = (item, name, label, value, options = {}) => {
+    const min = options.min ?? 0;
+    const max = options.max ?? 100000;
+    const step = options.step ?? "any";
+    const unit = options.unit ? `<span class="rk-field-note">${esc(options.unit)}</span>` : "";
+    return `
+      <div class="rk-field">
+        <label for="${name}-${item.uid}">${esc(label)}</label>
+        <input
+          id="${name}-${item.uid}"
+          class="rk-no-spin"
+          type="number"
+          inputmode="decimal"
+          min="${min}"
+          max="${max}"
+          step="${step}"
+          value="${esc(value)}"
+          data-item="${item.uid}"
+          data-field="${name}"
+        >
+        ${unit}
+      </div>`;
+  };
+
+  const itemWarning = (item) => numeric(item.startA) > 0 && numeric(item.startA) < numeric(item.runningA);
+
+  const renderItem = (item, result) => {
+    const warning = itemWarning(item);
+    const photoMarkup = item.photo
+      ? `
+        <div class="rk-photo-preview">
+          <img src="${item.photo}" alt="Nameplate for ${esc(item.name)}">
+          <span title="${esc(item.photoName)}">${esc(item.photoName || "Nameplate photo")}</span>
+          <button class="rk-text-button" type="button" data-action="clear-photo" data-item="${item.uid}">Remove</button>
+        </div>`
+      : `<span>No nameplate photo</span>`;
+
+    return `
+      <article class="rk-equipment-card" data-item-card="${item.uid}" data-warning="${warning}">
+        <div class="rk-equipment-top">
+          <span class="rk-equipment-code">${esc(item.code)}</span>
+          <div class="rk-equipment-title">
+            <input
+              class="rk-name-input"
+              aria-label="Equipment name"
+              value="${esc(item.name)}"
+              data-item="${item.uid}"
+              data-field="name"
+            >
+            <div class="rk-equipment-meta">
+              <span>${esc(item.category)}</span>
+              <span>·</span>
+              <span>${item.refrigeration ? "Cycling / compressor load" : "General load"}</span>
+            </div>
+          </div>
+          <div class="rk-equipment-actions">
+            <button class="rk-icon-btn" type="button" title="Duplicate load" aria-label="Duplicate ${esc(item.name)}" data-action="duplicate" data-item="${item.uid}">⧉</button>
+            <button class="rk-icon-btn" type="button" title="Remove load" aria-label="Remove ${esc(item.name)}" data-action="remove" data-item="${item.uid}">×</button>
+          </div>
+        </div>
+
+        <div class="rk-simple-row">
+          <div class="rk-field">
+            <span>Quantity</span>
+            <div class="rk-quantity">
+              <button type="button" aria-label="Decrease quantity" data-action="quantity-down" data-item="${item.uid}">−</button>
+              <input class="rk-no-spin" aria-label="Quantity" type="number" min="0" max="999" step="1" value="${esc(item.quantity)}" data-item="${item.uid}" data-field="quantity">
+              <button type="button" aria-label="Increase quantity" data-action="quantity-up" data-item="${item.uid}">+</button>
+            </div>
+          </div>
+          ${field(item, "hours", "Hours / day", item.hours, { min: 0, max: 24, step: 0.5 })}
+          <div class="rk-spec-strip" aria-label="Preset electrical values">
+            <span>${fmt(numeric(item.voltage), 0)} V</span>
+            <span>${fmt(numeric(item.frequency), 0)} Hz</span>
+            <span>${fmt(numeric(item.watts), 0)} W each</span>
+            <span>${fmt(numeric(item.runningA), 2)} A run</span>
+            <span>${fmt(numeric(item.startA), 1)} A LRA/start</span>
+            <span>${fmt(ambientAdjustedDuty(item), 0)}% effective duty</span>
+          </div>
+          <div class="rk-photo-control">
+            <label class="rk-photo-label" for="photo-${item.uid}">
+              ${item.photo ? "Replace nameplate" : "Add nameplate photo"}
+            </label>
+            <input id="photo-${item.uid}" class="rk-file-input" type="file" accept="image/*" capture="environment" data-photo-item="${item.uid}">
+          </div>
+        </div>
+
+        <div class="rk-advanced rk-advanced-grid">
+          ${field(item, "voltage", "Voltage", item.voltage, { min: 1, max: 1000, step: 1, unit: "V AC" })}
+          ${field(item, "frequency", "Frequency", item.frequency, { min: 1, max: 100, step: 1, unit: "Hz" })}
+          ${field(item, "watts", "Rated power", item.watts, { min: 0, max: 1000000, step: 1, unit: "W per unit" })}
+          ${field(item, "runningA", "Running current", item.runningA, { min: 0, max: 10000, step: 0.01, unit: "A per unit" })}
+          ${field(item, "startA", "Starting amps / LRA", item.startA, { min: 0, max: 10000, step: 0.1, unit: "A per unit" })}
+          ${field(item, "duty", "Base duty cycle", item.duty, { min: 0, max: 100, step: 1, unit: "% of operating hours" })}
+          ${field(item, "ambientC", "Ambient temperature", item.ambientC, { min: -20, max: 70, step: 1, unit: "°C at installation" })}
+          <div class="rk-field">
+            <label for="temp-${item.uid}">Product temperature</label>
+            <input id="temp-${item.uid}" value="${esc(item.temperature)}" data-item="${item.uid}" data-field="temperature">
+            <span class="rk-field-note">Setpoint or range</span>
+          </div>
+          <div class="rk-field">
+            <label for="type-${item.uid}">Load behavior</label>
+            <select id="type-${item.uid}" data-item="${item.uid}" data-field="refrigeration">
+              <option value="true"${item.refrigeration ? " selected" : ""}>Cycling / refrigeration</option>
+              <option value="false"${!item.refrigeration ? " selected" : ""}>General / fixed load</option>
+            </select>
+            <span class="rk-field-note">Controls ambient adjustment</span>
+          </div>
+          <div class="rk-field">
+            <label>Photo status</label>
+            <div style="min-height:36px;display:flex;align-items:center;color:var(--rk-ink-500);font-size:12px">${item.photo ? "Photo captured" : "Not captured"}</div>
+            <span class="rk-field-note">Stored with this survey</span>
+          </div>
+        </div>
+
+        <div class="rk-equipment-footer">
+          <div class="rk-equipment-kpis">
+            <span>Connected<strong data-item-result="${item.uid}" data-result="connected">${fmt(result.connectedKw, 2)} kW</strong></span>
+            <span>Daily energy<strong data-item-result="${item.uid}" data-result="daily">${fmt(result.dailyKwh, 2)} kWh</strong></span>
+            <span class="rk-advanced">Start per unit<strong data-item-result="${item.uid}" data-result="start">${fmt(result.startKvaEach, 2)} kVA</strong></span>
+          </div>
+          <div data-photo-summary="${item.uid}">${photoMarkup}</div>
+        </div>
+      </article>`;
+  };
+
+  const insightItems = (results) => {
+    const warnings = [];
+    const inconsistentStarts = state.items.filter(itemWarning).length;
+    const missingPhotos = state.items.filter((item) => !item.photo).length;
+    const highAmbient = state.items.filter((item) => item.refrigeration && numeric(item.ambientC) >= 40).length;
+
+    if (!state.items.length) {
+      warnings.push(["warning", "Add at least one equipment item to calculate a system."]);
+    } else {
+      warnings.push(["ok", `${state.items.length} load line${state.items.length === 1 ? "" : "s"} included; ${results.photographed} with nameplate evidence.`]);
+    }
+    if (missingPhotos > 0) {
+      warnings.push(["warning", `${missingPhotos} load line${missingPhotos === 1 ? "" : "s"} still use preliminary preset values. Verify against nameplates before final design.`]);
+    }
+    if (inconsistentStarts > 0) {
+      warnings.push(["warning", `${inconsistentStarts} item${inconsistentStarts === 1 ? " has" : "s have"} starting current below running current. Check the entered LRA/start amps.`]);
+    }
+    if (highAmbient > 0 && state.applyAmbient) {
+      warnings.push(["warning", `Ambient correction is active for ${highAmbient} refrigeration line${highAmbient === 1 ? "" : "s"} at 40°C or above.`]);
+    }
+    if (state.diversity < 50) {
+      warnings.push(["warning", "The simultaneous-start factor is below 50%; confirm this assumption with the engineer."]);
+    }
+    warnings.push(["ok", `Startup model: connected load plus ${fmt(state.diversity, 0)}% of the incremental LRA/start demand.`]);
+
+    return warnings
+      .map(([level, text]) => `<li data-level="${level === "warning" ? "warning" : "ok"}">${esc(text)}</li>`)
+      .join("");
+  };
+
+  const render = () => {
+    const mount = document.getElementById("retail-kiosk-survey-root");
+    if (!mount) return;
+    const results = calculate();
+    const items = state.items
+      .map((item) => renderItem(item, results.itemResults.find((result) => result.uid === item.uid)))
+      .join("");
+    const businessLabel = BUSINESS_LABELS[state.business] || "Retail";
+
+    mount.innerHTML = `
+      <div class="rk-shell" data-mode="${state.mode}">
+        <header class="rk-header">
+          <a class="rk-brand" href="#/" aria-label="AVESTA sizing tool home">
+            <span class="rk-brand-mark">AV</span>
+            <span class="rk-brand-copy">
+              <strong>AVESTA</strong>
+              <span>C&amp;I BATTERY SIZING</span>
+            </span>
+          </a>
+          <nav class="rk-nav" aria-label="Primary navigation">
+            <a href="#/">Projects</a>
+            <a href="#/assessment/new">New Assessment</a>
+            <a href="#/library">Equipment Library</a>
+            <a href="${ROUTE}" aria-current="page">Retail / Kiosk Survey</a>
+            <a href="#/reports">Reports</a>
+            <a href="#/settings">Settings</a>
+          </nav>
+        </header>
+
+        <main class="rk-main">
+          <section class="rk-hero">
+            <div>
+              <p class="rk-eyebrow">Egypt retail load library</p>
+              <h1>Retail &amp; Kiosk Load Survey</h1>
+              <p>Select equipment, confirm its nameplate values, and size the battery and inverter from connected load, daily energy and compressor startup demand.</p>
+            </div>
+            <div class="rk-hero-actions">
+              <div class="rk-mode-switch" role="group" aria-label="Survey mode">
+                <button type="button" data-action="mode" data-mode="simple" aria-pressed="${state.mode === "simple"}">Simple</button>
+                <button type="button" data-action="mode" data-mode="advanced" aria-pressed="${state.mode === "advanced"}">Engineer / Advanced</button>
+              </div>
+              <button class="rk-btn" type="button" data-action="print">Print / PDF</button>
+              <button class="rk-btn rk-btn-danger" type="button" data-action="reset">Reset</button>
+            </div>
+          </section>
+
+          <section class="rk-card rk-setup" aria-label="Survey setup">
+            <div class="rk-field">
+              <label for="rk-business">Business type</label>
+              <select id="rk-business" data-global="business">${businessOptions()}</select>
+              <span class="rk-field-note">Choose a starter profile, then edit it.</span>
+            </div>
+            <div class="rk-field">
+              <label for="rk-location">Location</label>
+              <select id="rk-location" data-global="location">
+                <option value="Cairo"${state.location === "Cairo" ? " selected" : ""}>Cairo</option>
+                <option value="Giza"${state.location === "Giza" ? " selected" : ""}>Giza</option>
+                <option value="Other Egypt"${state.location === "Other Egypt" ? " selected" : ""}>Other Egypt</option>
+              </select>
+              <span class="rk-field-note">Egypt defaults: 230 V / 50 Hz / 1 phase.</span>
+            </div>
+            <div class="rk-field">
+              <label for="rk-ambient">Ambient / installation</label>
+              <div class="rk-ambient-line">
+                <select id="rk-ambient" data-global="ambientPreset">${ambientOptions()}</select>
+                <span class="rk-ambient-chip" data-global-display="ambient">${fmt(state.ambientC, 0)}°C</span>
+              </div>
+              <span class="rk-field-note">Applies to all rows when the preset changes.</span>
+            </div>
+            <div class="rk-field">
+              <label>Starter profile</label>
+              <button class="rk-btn rk-btn-dark" type="button" data-action="apply-template">Load ${esc(businessLabel)} starter</button>
+              <span class="rk-field-note">Replaces the current equipment list.</span>
+            </div>
+          </section>
+
+          <div class="rk-workspace">
+            <div class="rk-column">
+              <section class="rk-card rk-preset-card">
+                <div class="rk-section-head">
+                  <div>
+                    <h2>Add equipment</h2>
+                    <p>Preliminary Egypt-market assumptions. Nameplate values always take priority.</p>
+                  </div>
+                  <button class="rk-btn rk-btn-primary" type="button" data-action="add-custom">+ Custom load</button>
+                </div>
+                <div class="rk-preset-grid">${presetCards()}</div>
+              </section>
+
+              <section class="rk-card">
+                <div class="rk-section-head">
+                  <div>
+                    <h2>Survey equipment</h2>
+                    <p><span data-count="items">${state.items.length}</span> load line${state.items.length === 1 ? "" : "s"} · values update the recommendation automatically.</p>
+                  </div>
+                  <button class="rk-btn" type="button" data-action="clear-items">Clear all</button>
+                </div>
+                <div class="rk-equipment-list">
+                  ${items || `<div class="rk-empty"><strong>No equipment added</strong><span>Choose a preset above or add a custom load.</span></div>`}
+                </div>
+              </section>
+            </div>
+
+            <aside class="rk-column">
+              <section class="rk-card rk-results" aria-live="polite">
+                <div class="rk-result-head">
+                  <p class="rk-eyebrow">Live sizing result</p>
+                  <h2>AVESTA recommendation</h2>
+                  <p>${esc(businessLabel)} · ${esc(state.location)} · ${fmt(state.autonomyHours, 0)} h autonomy</p>
+                </div>
+                <div class="rk-result-grid">
+                  <div class="rk-result-metric">
+                    <span>Connected load</span>
+                    <strong data-result-total="connected">${fmt(results.connectedKw, 2)} kW</strong>
+                    <small>Rated watts × quantity</small>
+                  </div>
+                  <div class="rk-result-metric">
+                    <span>Estimated startup peak</span>
+                    <strong data-result-total="peak">${fmt(results.peakKw, 2)} kW</strong>
+                    <small><span data-result-total="peak-current">${fmt(results.peakCurrentA, 0)} A</span> equivalent at 230 V</small>
+                  </div>
+                  <div class="rk-result-metric">
+                    <span>Daily energy</span>
+                    <strong data-result-total="daily">${fmt(results.dailyKwh, 2)} kWh</strong>
+                    <small>Hours × effective duty cycle</small>
+                  </div>
+                  <div class="rk-result-metric">
+                    <span>Required nominal battery</span>
+                    <strong data-result-total="battery">${fmt(results.nominalBatteryKwh, 2)} kWh</strong>
+                    <small>After DoD and system losses</small>
+                  </div>
+                </div>
+                <div class="rk-recommendation">
+                  <h3>Recommended configuration</h3>
+                  <div class="rk-rec-line">
+                    <span>AVESTA battery</span>
+                    <strong data-result-total="battery-rec">${results.moduleCount ? `${results.moduleCount} × ${fmt(results.moduleKwh, 1)} = ${fmt(results.recommendedBatteryKwh, 1)} kWh` : "—"}</strong>
+                  </div>
+                  <div class="rk-rec-line">
+                    <span>Inverter rating</span>
+                    <strong data-result-total="inverter">${results.standardInverterKw ? `≥ ${fmt(results.standardInverterKw, 0)} kW` : "—"}</strong>
+                  </div>
+                  <div class="rk-rec-line">
+                    <span>Estimated runtime</span>
+                    <strong data-result-total="runtime">${results.estimatedRuntimeHours ? `${fmt(results.estimatedRuntimeHours, 1)} h` : "—"}</strong>
+                  </div>
+                  <p class="rk-rec-note">Preliminary recommendation only. Confirm compressor LRA, inverter surge duration, cable protection, phase arrangement and thermal conditions before quotation or installation.</p>
+                </div>
+              </section>
+
+              <section class="rk-card rk-assumptions">
+                <div class="rk-section-head">
+                  <div>
+                    <h3>System assumptions</h3>
+                    <p>Editable inputs used in the battery and inverter calculations.</p>
+                  </div>
+                </div>
+                <div class="rk-assumption-grid">
+                  <div class="rk-field">
+                    <label for="rk-autonomy">Autonomy</label>
+                    <input id="rk-autonomy" type="number" min="0" max="168" step="0.5" value="${esc(state.autonomyHours)}" data-global="autonomyHours">
+                    <span class="rk-field-note">hours of backup</span>
+                  </div>
+                  <div class="rk-field">
+                    <label for="rk-dod">Battery DoD</label>
+                    <input id="rk-dod" type="number" min="1" max="100" step="1" value="${esc(state.dod)}" data-global="dod">
+                    <span class="rk-field-note">% usable depth</span>
+                  </div>
+                  <div class="rk-field">
+                    <label for="rk-efficiency">System efficiency</label>
+                    <input id="rk-efficiency" type="number" min="1" max="100" step="1" value="${esc(state.efficiency)}" data-global="efficiency">
+                    <span class="rk-field-note">% battery-to-load</span>
+                  </div>
+                  <div class="rk-field rk-advanced">
+                    <label for="rk-frequency">Grid frequency</label>
+                    <input id="rk-frequency" type="number" min="1" max="100" step="1" value="${esc(state.frequency)}" data-global="frequency">
+                    <span class="rk-field-note">Hz · Egypt default 50</span>
+                  </div>
+                  <div class="rk-field rk-range-row">
+                    <label for="rk-diversity">Simultaneous-start factor</label>
+                    <div class="rk-range-wrap">
+                      <input id="rk-diversity" type="range" min="0" max="100" step="5" value="${esc(state.diversity)}" data-global="diversity">
+                      <span class="rk-range-value" data-global-display="diversity">${fmt(state.diversity, 0)}%</span>
+                    </div>
+                    <span class="rk-field-note">Higher values assume more compressors start together. Default: 70%.</span>
+                  </div>
+                  <div class="rk-field rk-advanced">
+                    <label for="rk-margin">Inverter margin</label>
+                    <input id="rk-margin" type="number" min="0" max="200" step="1" value="${esc(state.inverterMargin)}" data-global="inverterMargin">
+                    <span class="rk-field-note">% above calculated peak</span>
+                  </div>
+                  <div class="rk-field rk-advanced">
+                    <label for="rk-module">Battery module</label>
+                    <input id="rk-module" type="number" min="0.1" max="10000" step="0.1" value="${esc(state.batteryModule)}" data-global="batteryModule">
+                    <span class="rk-field-note">kWh per AVESTA module</span>
+                  </div>
+                  <label class="rk-check">
+                    <input type="checkbox" data-global="applyAmbient"${state.applyAmbient ? " checked" : ""}>
+                    <span>Apply hot-ambient correction to refrigeration duty cycle: +1.5 percentage points per °C above 30°C, capped at 100%.</span>
+                  </label>
+                </div>
+              </section>
+
+              <section class="rk-card rk-advanced">
+                <div class="rk-section-head">
+                  <div>
+                    <h3>Engineering checks</h3>
+                    <p>Items to resolve before final design.</p>
+                  </div>
+                </div>
+                <div class="rk-insights">
+                  <ul data-insights>${insightItems(results)}</ul>
+                </div>
+              </section>
+            </aside>
+          </div>
+
+          <p class="rk-footer">AVESTA C&amp;I Battery Sizing Tool · Egypt retail presets are preliminary engineering assumptions · Final system design requires nameplate verification and engineering approval.</p>
+        </main>
+        <div class="rk-status" role="status" aria-live="polite"></div>
+      </div>`;
+  };
+
+  const showStatus = (message) => {
+    const status = document.querySelector(".rk-status");
+    if (!status) return;
+    status.textContent = message;
+    status.dataset.show = "true";
+    clearTimeout(statusTimer);
+    statusTimer = window.setTimeout(() => {
+      status.dataset.show = "false";
+    }, 2400);
+  };
+
+  const refreshCalculations = () => {
+    const results = calculate();
+    const update = (selector, value) => {
+      const element = document.querySelector(selector);
+      if (element) element.textContent = value;
+    };
+
+    update('[data-result-total="connected"]', `${fmt(results.connectedKw, 2)} kW`);
+    update('[data-result-total="peak"]', `${fmt(results.peakKw, 2)} kW`);
+    update('[data-result-total="peak-current"]', `${fmt(results.peakCurrentA, 0)} A`);
+    update('[data-result-total="daily"]', `${fmt(results.dailyKwh, 2)} kWh`);
+    update('[data-result-total="battery"]', `${fmt(results.nominalBatteryKwh, 2)} kWh`);
+    update(
+      '[data-result-total="battery-rec"]',
+      results.moduleCount
+        ? `${results.moduleCount} × ${fmt(results.moduleKwh, 1)} = ${fmt(results.recommendedBatteryKwh, 1)} kWh`
+        : "—",
+    );
+    update('[data-result-total="inverter"]', results.standardInverterKw ? `≥ ${fmt(results.standardInverterKw, 0)} kW` : "—");
+    update('[data-result-total="runtime"]', results.estimatedRuntimeHours ? `${fmt(results.estimatedRuntimeHours, 1)} h` : "—");
+    update('[data-global-display="diversity"]', `${fmt(state.diversity, 0)}%`);
+    update('[data-global-display="ambient"]', `${fmt(state.ambientC, 0)}°C`);
+
+    results.itemResults.forEach((result) => {
+      update(`[data-item-result="${result.uid}"][data-result="connected"]`, `${fmt(result.connectedKw, 2)} kW`);
+      update(`[data-item-result="${result.uid}"][data-result="daily"]`, `${fmt(result.dailyKwh, 2)} kWh`);
+      update(`[data-item-result="${result.uid}"][data-result="start"]`, `${fmt(result.startKvaEach, 2)} kVA`);
+    });
+
+    const insights = document.querySelector("[data-insights]");
+    if (insights) insights.innerHTML = insightItems(results);
+  };
+
+  const updateItem = (uid, fieldName, rawValue) => {
+    const item = state.items.find((entry) => entry.uid === uid);
+    if (!item) return;
+    if (fieldName === "refrigeration") {
+      item[fieldName] = rawValue === "true";
+    } else if (["name", "temperature"].includes(fieldName)) {
+      item[fieldName] = String(rawValue);
+    } else {
+      item[fieldName] = numeric(rawValue);
+    }
+    saveState();
+    refreshCalculations();
+  };
+
+  const updateGlobal = (fieldName, target) => {
+    if (fieldName === "applyAmbient") {
+      state.applyAmbient = Boolean(target.checked);
+    } else if (["business", "location", "ambientPreset"].includes(fieldName)) {
+      state[fieldName] = target.value;
+    } else {
+      state[fieldName] = numeric(target.value);
+    }
+
+    if (fieldName === "ambientPreset") {
+      const preset = AMBIENT_PRESETS[state.ambientPreset] || AMBIENT_PRESETS.custom;
+      state.ambientC = preset.c;
+      state.items.forEach((item) => {
+        item.ambientC = preset.c;
+      });
+      render();
+    } else if (fieldName === "frequency") {
+      state.items.forEach((item) => {
+        item.frequency = state.frequency;
+      });
+      render();
+    } else {
+      refreshCalculations();
+    }
+    saveState();
+  };
+
+  const compressImage = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = () => {
+        const image = new Image();
+        image.onerror = reject;
+        image.onload = () => {
+          const maximum = 1000;
+          const scale = Math.min(1, maximum / Math.max(image.width, image.height));
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.max(1, Math.round(image.width * scale));
+          canvas.height = Math.max(1, Math.round(image.height * scale));
+          const context = canvas.getContext("2d");
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL("image/jpeg", 0.76));
+        };
+        image.src = String(reader.result);
+      };
+      reader.readAsDataURL(file);
+    });
+
+  const handlePhoto = async (target) => {
+    const item = state.items.find((entry) => entry.uid === target.dataset.photoItem);
+    const file = target.files?.[0];
+    if (!item || !file) return;
+    if (!file.type.startsWith("image/")) {
+      showStatus("Please choose an image file.");
+      return;
+    }
+    try {
+      showStatus("Preparing the nameplate photo…");
+      item.photo = await compressImage(file);
+      item.photoName = file.name;
+      saveState();
+      render();
+      showStatus("Nameplate photo saved with this load.");
+    } catch {
+      showStatus("The photo could not be read. Please try another image.");
+    }
+  };
+
+  const applyBusinessTemplate = () => {
+    state.items = templateItems(state.business, state.ambientC);
+    saveState();
+    render();
+    showStatus(`${BUSINESS_LABELS[state.business]} starter profile loaded.`);
+  };
+
+  const handleClick = (event) => {
+    const button = event.target.closest("[data-action]");
+    if (!button) return;
+    const action = button.dataset.action;
+    const uid = button.dataset.item;
+
+    if (action === "mode") {
+      state.mode = button.dataset.mode === "advanced" ? "advanced" : "simple";
+      saveState();
+      render();
+      return;
+    }
+    if (action === "print") {
+      window.print();
+      return;
+    }
+    if (action === "reset") {
+      if (!window.confirm("Reset the Retail / Kiosk survey to the Cairo kiosk starter profile?")) return;
+      state = defaultState();
+      saveState();
+      render();
+      showStatus("Survey reset to the Cairo kiosk starter.");
+      return;
+    }
+    if (action === "apply-template") {
+      if (state.items.length && !window.confirm("Replace the current equipment list with this starter profile?")) return;
+      applyBusinessTemplate();
+      return;
+    }
+    if (action === "clear-items") {
+      if (state.items.length && !window.confirm("Remove all equipment from this survey?")) return;
+      state.items = [];
+      saveState();
+      render();
+      return;
+    }
+    if (action === "add-preset" || action === "add-custom") {
+      const presetId = action === "add-custom" ? "custom" : button.dataset.preset;
+      state.items.push(createItem(presetId, { ambientC: state.ambientC, frequency: state.frequency }));
+      saveState();
+      render();
+      const added = state.items.at(-1);
+      document.querySelector(`[data-item-card="${added.uid}"]`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      showStatus(`${added.name} added.`);
+      return;
+    }
+    if (action === "remove") {
+      state.items = state.items.filter((item) => item.uid !== uid);
+      saveState();
+      render();
+      return;
+    }
+    if (action === "duplicate") {
+      const item = state.items.find((entry) => entry.uid === uid);
+      if (!item) return;
+      const duplicate = normalizeItem({ ...item, uid: makeId(), name: `${item.name} copy`, photo: "", photoName: "" });
+      const index = state.items.findIndex((entry) => entry.uid === uid);
+      state.items.splice(index + 1, 0, duplicate);
+      saveState();
+      render();
+      showStatus("Load duplicated. The nameplate photo was not copied.");
+      return;
+    }
+    if (action === "quantity-up" || action === "quantity-down") {
+      const item = state.items.find((entry) => entry.uid === uid);
+      if (!item) return;
+      item.quantity = clamp(numeric(item.quantity) + (action === "quantity-up" ? 1 : -1), 0, 999);
+      saveState();
+      render();
+      return;
+    }
+    if (action === "clear-photo") {
+      const item = state.items.find((entry) => entry.uid === uid);
+      if (!item) return;
+      item.photo = "";
+      item.photoName = "";
+      saveState();
+      render();
+      showStatus("Nameplate photo removed.");
+    }
+  };
+
+  const handleInput = (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement) && !(target instanceof HTMLSelectElement)) return;
+    if (target.dataset.photoItem) return;
+    if (target.dataset.item && target.dataset.field) {
+      updateItem(target.dataset.item, target.dataset.field, target.value);
+    } else if (target.dataset.global) {
+      updateGlobal(target.dataset.global, target);
+    }
+  };
+
+  const ensureMount = () => {
+    let mount = document.getElementById("retail-kiosk-survey-root");
+    if (!mount) {
+      mount = document.createElement("div");
+      mount.id = "retail-kiosk-survey-root";
+      document.body.append(mount);
+      mount.addEventListener("click", handleClick);
+      mount.addEventListener("input", handleInput);
+      mount.addEventListener("change", (event) => {
+        const target = event.target;
+        if (target instanceof HTMLInputElement && target.dataset.photoItem) {
+          void handlePhoto(target);
+        }
+      });
+    }
+    return mount;
+  };
+
+  const injectNavigation = () => {
+    if (location.hash.startsWith(ROUTE)) return;
+    document.querySelectorAll("#root header nav").forEach((nav) => {
+      if (nav.querySelector('[data-rk-nav-link="true"]')) return;
+      const link = document.createElement("a");
+      link.href = ROUTE;
+      link.dataset.rkNavLink = "true";
+      link.textContent = "Retail / Kiosk Survey";
+      const reference = Array.from(nav.querySelectorAll("a")).find((entry) => entry.textContent?.trim() === "Reports");
+      if (reference?.className) link.className = reference.className;
+      if (reference) nav.insertBefore(link, reference);
+      else nav.append(link);
+    });
+  };
+
+  const injectHomeLaunch = () => {
+    if (location.hash !== "#/" && location.hash !== "") return;
+    const main = document.querySelector("#root main");
+    if (!main || main.querySelector('[data-rk-home-launch="true"]')) return;
+    const launch = document.createElement("section");
+    launch.className = "rk-home-launch";
+    launch.dataset.rkHomeLaunch = "true";
+    launch.innerHTML = `
+      <div>
+        <strong>Retail &amp; Kiosk Load Survey is installed</strong>
+        <span>Use Egypt-focused cooler, freezer, lighting, POS/CCTV and AC presets to size the battery and inverter.</span>
+      </div>
+      <a href="${ROUTE}">Open Retail / Kiosk Survey</a>`;
+    main.prepend(launch);
+  };
+
+  const syncRoute = () => {
+    ensureMount();
+    const active = location.hash.startsWith(ROUTE);
+    document.body.classList.toggle("rk-route-active", active);
+    document.title = active ? "AVESTA Retail & Kiosk Load Survey" : ORIGINAL_TITLE;
+    if (active) render();
+    else {
+      window.requestAnimationFrame(() => {
+        injectNavigation();
+        injectHomeLaunch();
+      });
+    }
+  };
+
+  const observer = new MutationObserver(() => {
+    if (!document.body.classList.contains("rk-route-active")) {
+      injectNavigation();
+      injectHomeLaunch();
+    }
+  });
+
+  const init = () => {
+    ensureMount();
+    const originalRoot = document.getElementById("root");
+    if (originalRoot) observer.observe(originalRoot, { childList: true, subtree: true });
+    window.addEventListener("hashchange", syncRoute);
+    if (location.hash === "" || location.hash === "#/") {
+      history.replaceState(null, "", ROUTE);
+    }
+    syncRoute();
+    window.setTimeout(() => {
+      injectNavigation();
+      injectHomeLaunch();
+    }, 100);
+  };
+
+  window.__avestaRetailSurvey = {
+    presets: PRESETS,
+    ambientPresets: AMBIENT_PRESETS,
+    calculate,
+    getState: () => structuredClone(state),
+    setState: (nextState) => {
+      state = { ...defaultState(), ...nextState, items: (nextState.items || []).map(normalizeItem) };
+      saveState();
+      if (location.hash.startsWith(ROUTE)) render();
+      return calculate();
+    },
+    reset: () => {
+      state = defaultState();
+      saveState();
+      if (location.hash.startsWith(ROUTE)) render();
+    },
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+})();
+
+    </script>
   </body>
 </html>
