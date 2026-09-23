@@ -213,7 +213,7 @@ details[open] summary::after { content: "–"; }
         <div class="field"><label for="p_batt">Battery per kWh</label><input id="p_batt" type="number" step="10" min="0" /></div>
         <div class="field"><label for="p_pv">Solar PV per kWp</label><input id="p_pv" type="number" step="100" min="0" /></div>
         <div class="field"><label for="p_inv">Inverter per kW</label><input id="p_inv" type="number" step="100" min="0" /></div>
-        <div class="field"><label for="p_inst">Installation &amp; BOS (% of equipment)</label><input id="p_inst" type="number" step="1" min="0" /></div>
+        <div class="field"><label for="p_inst">Installation &amp; BOS (% of PV + inverter)</label><input id="p_inst" type="number" step="1" min="0" /></div>
       </div>
       <h4>Tariff (EGP / kWh)</h4>
       <div class="fgrid" id="tariffFields"></div>
@@ -379,8 +379,9 @@ details[open] summary::after { content: "–"; }
 
   function price(pvKwp, battKwh) {
     const inv = inverterKw(pvKwp);
-    const equip = pvKwp * state.pricePv + battKwh * state.priceBatt + inv * state.priceInv;
-    return { inv, total: equip * (1 + state.priceInst / 100) };
+    // Installation & BOS scales with the PV array and inverter, not with battery price.
+    const solarEquip = pvKwp * state.pricePv + inv * state.priceInv;
+    return { inv, total: solarEquip * (1 + state.priceInst / 100) + battKwh * state.priceBatt };
   }
 
   // Daily grid import (kWh) for a PV size and usable battery energy.
