@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#14171c" />
+<title>AVESTA Home Tier Sizing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<style>
+:root {
+  --accent: #f26a1b; --accent-600: #d95a11; --accent-50: #fef5ef; --accent-100: #fdeade;
+  --green: #1f9d63; --green-50: #edf9f3; --blue: #2f6fd6; --blue-50: #eef4ff;
+  --amber: #d98a0b; --amber-50: #fff8e8; --red: #d3453d;
+  --ink-50: #f4f5f7; --ink-100: #e8ebef; --ink-200: #d0d5dd; --ink-300: #a5acb8; --ink-400: #7c8494;
+  --ink-500: #5a6270; --ink-600: #3a414b; --ink-700: #272c34; --ink-900: #14171c; --ink-950: #0d0f12;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: "IBM Plex Sans", system-ui, sans-serif; background: var(--ink-50); color: var(--ink-900); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+
+/* Header — mirrors the Retail / Kiosk module */
+.hdr { background: var(--ink-900); color: #fff; display: flex; align-items: center; gap: 32px; padding: 14px 32px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-mark { width: 40px; height: 40px; border-radius: 6px; background: var(--accent); display: grid; place-items: center; font-weight: 700; }
+.brand-copy { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-copy strong { letter-spacing: .12em; }
+.brand-copy span { font-size: 11px; letter-spacing: .12em; color: var(--ink-300); }
+.nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.nav a { text-decoration: none; color: var(--ink-200); padding: 8px 12px; border-radius: 6px; white-space: nowrap; font-size: 14px; }
+.nav a:hover { background: var(--ink-700); color: #fff; }
+.nav a[aria-current="page"] { background: var(--ink-700); color: #fff; box-shadow: inset 0 -2px 0 var(--accent); }
+
+main { max-width: 1180px; margin: 0 auto; padding: 32px 24px 64px; }
+.eyebrow { color: var(--accent-600); font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 8px; }
+h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 500; margin: 0 0 10px; letter-spacing: -.01em; }
+.lead { color: var(--ink-500); max-width: 760px; margin: 0 0 28px; line-height: 1.55; }
+h2 { font-size: 18px; margin: 0 0 4px; font-weight: 600; }
+.sub { color: var(--ink-500); font-size: 14px; margin: 0 0 16px; line-height: 1.5; }
+
+.card { background: #fff; border: 1px solid var(--ink-100); border-radius: 10px; padding: 22px; }
+.stack > * + * { margin-top: 20px; }
+
+/* Input panel */
+.input-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.seg { display: inline-flex; background: var(--ink-50); border: 1px solid var(--ink-100); border-radius: 8px; padding: 4px; gap: 4px; }
+.seg button { border: 0; background: transparent; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 500; color: var(--ink-500); font-size: 14px; }
+.seg button[aria-pressed="true"] { background: var(--ink-900); color: #fff; }
+.big-input { display: flex; align-items: center; border: 1px solid var(--ink-200); border-radius: 8px; margin-top: 14px; background: #fff; overflow: hidden; }
+.big-input:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgb(242 106 27 / .18); }
+.big-input input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 14px 16px; font-size: 28px; font-family: var(--mono); font-weight: 500; }
+.big-input .unit { padding: 0 16px; color: var(--ink-400); font-family: var(--mono); font-weight: 500; }
+.derived { margin-top: 12px; font-size: 14px; color: var(--ink-600); line-height: 1.6; }
+.derived b { font-family: var(--mono); font-weight: 600; color: var(--ink-900); }
+.warn { margin-top: 10px; font-size: 13px; color: #8a5a06; background: var(--amber-50); border-radius: 6px; padding: 8px 10px; }
+.scheme-opt { display: flex; gap: 10px; padding: 12px; border: 1px solid var(--ink-100); border-radius: 8px; cursor: pointer; align-items: flex-start; }
+.scheme-opt + .scheme-opt { margin-top: 8px; }
+.scheme-opt:has(input:checked) { border-color: var(--accent); background: var(--accent-50); }
+.scheme-opt input { margin-top: 3px; accent-color: var(--accent); }
+.scheme-opt strong { display: block; font-size: 14px; }
+.scheme-opt span { font-size: 13px; color: var(--ink-500); line-height: 1.45; }
+.label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-400); margin-bottom: 8px; }
+
+/* Options */
+.opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.opt { border: 1px solid var(--ink-100); border-radius: 10px; background: #fff; padding: 20px; display: flex; flex-direction: column; }
+.opt.rec { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.opt-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px; }
+.opt-head h3 { margin: 0; font-size: 16px; }
+.badge { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--accent); color: #fff; white-space: nowrap; }
+.opt-sys { color: var(--ink-500); font-size: 13px; min-height: 38px; margin-bottom: 12px; line-height: 1.45; }
+.opt-big { font-family: var(--mono); font-size: 26px; font-weight: 600; }
+.opt-big small { font-size: 13px; font-weight: 500; color: var(--ink-400); }
+.opt-save { color: var(--green); font-weight: 600; font-size: 14px; margin: 4px 0 14px; min-height: 20px; }
+.kv { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px dashed var(--ink-100); font-size: 14px; }
+.kv span:first-child { color: var(--ink-500); }
+.kv span:last-child { font-family: var(--mono); font-weight: 500; text-align: right; }
+.opt-note { font-size: 12.5px; color: var(--ink-500); margin-top: auto; padding-top: 12px; line-height: 1.45; }
+
+/* Chart */
+.chart-row { display: grid; grid-template-columns: 130px minmax(0, 1fr) 110px; align-items: center; gap: 12px; padding: 6px 0; font-size: 14px; }
+.bar-track { height: 26px; background: var(--ink-50); border-radius: 4px; overflow: hidden; }
+.bar { height: 100%; border-radius: 4px; transition: width .35s ease; }
+.chart-row .v { font-family: var(--mono); text-align: right; font-weight: 500; }
+
+/* Tier ladder */
+.ladder { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.rung { border: 1px solid var(--ink-100); border-radius: 8px; padding: 10px; background: #fff; position: relative; min-height: 104px; }
+.rung .t { font-size: 12px; color: var(--ink-400); font-weight: 600; }
+.rung .r { font-family: var(--mono); font-weight: 600; font-size: 17px; margin: 4px 0; }
+.rung .rg { font-size: 12px; color: var(--ink-500); }
+.rung .flag { font-size: 11px; color: var(--ink-400); margin-top: 4px; }
+.rung.now { border-color: var(--red); background: #fdf1f0; }
+.rung.after { border-color: var(--green); background: var(--green-50); }
+.rung .mk { position: absolute; top: -9px; right: 8px; font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 999px; color: #fff; letter-spacing: .04em; }
+.insight { margin-top: 14px; background: var(--blue-50); border-radius: 8px; padding: 12px 14px; font-size: 14px; line-height: 1.55; color: var(--ink-700); }
+.insight b { font-family: var(--mono); }
+
+/* Assumptions */
+details.card { padding: 0; }
+details summary { cursor: pointer; padding: 18px 22px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: "+"; font-family: var(--mono); color: var(--ink-400); font-size: 20px; }
+details[open] summary::after { content: "–"; }
+.assm { padding: 0 22px 22px; }
+.fgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 16px; }
+.field label { display: block; font-size: 12.5px; color: var(--ink-500); margin-bottom: 4px; }
+.field input, .field select { width: 100%; border: 1px solid var(--ink-200); border-radius: 6px; padding: 8px 10px; font-family: var(--mono); font-size: 14px; background: #fff; }
+.field input:focus, .field select:focus { outline: 0; border-color: var(--accent); }
+.assm h4 { margin: 20px 0 10px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-400); }
+.btn { border: 1px solid var(--ink-200); background: #fff; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+.btn:hover { border-color: var(--ink-400); }
+.notes { font-size: 13px; color: var(--ink-500); line-height: 1.6; margin: 0; padding-left: 18px; }
+
+@media (max-width: 900px) {
+  .input-grid, .opts { grid-template-columns: minmax(0, 1fr); }
+  .ladder { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 14px; }
+  .fgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .hdr { padding: 12px 16px; gap: 12px; }
+  .nav { width: 100%; }
+  main { padding: 24px 16px 48px; }
+  .card, .opt { padding: 16px; }
+  .ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .chart-row { grid-template-columns: 92px minmax(0, 1fr) 88px; font-size: 13px; }
+  .big-input input { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="brand" href="index.html#/" aria-label="AVESTA sizing tool home">
+    <span class="brand-mark">AV</span>
+    <span class="brand-copy"><strong>AVESTA</strong><span>BATTERY SIZING</span></span>
+  </a>
+  <nav class="nav" aria-label="Primary navigation">
+    <a href="index.html#/">Projects</a>
+    <a href="index.html#/assessment/new">New Assessment</a>
+    <a href="index.html#/library">Equipment Library</a>
+    <a href="index.html#/retail-kiosk">Retail / Kiosk Survey</a>
+    <a href="tiers.html" aria-current="page">Home Tier Sizing</a>
+  </nav>
+</header>
+
+<main class="stack">
+  <section>
+    <p class="eyebrow">Egypt residential tariff</p>
+    <h1>Home Tier Sizing</h1>
+    <p class="lead">Enter the customer's last electricity bill or last month's consumption. The tool finds their tariff tier, sizes a solar system and an AVESTA LV battery, and compares the new bill and payback for solar only and solar with battery.</p>
+  </section>
+
+  <section class="card input-grid">
+    <div>
+      <div class="label">Customer input</div>
+      <div class="seg" role="group" aria-label="Input type">
+        <button type="button" data-input-mode="bill" aria-pressed="true">Last bill (EGP)</button>
+        <button type="button" data-input-mode="kwh" aria-pressed="false">Last month (kWh)</button>
+      </div>
+      <div class="big-input">
+        <input id="mainInput" type="number" inputmode="decimal" min="0" step="any" aria-label="Customer input value" />
+        <span class="unit" id="mainUnit">EGP</span>
+      </div>
+      <div class="derived" id="derived"></div>
+      <div id="gapWarn"></div>
+    </div>
+    <div>
+      <div class="label">Grid connection</div>
+      <label class="scheme-opt">
+        <input type="radio" name="scheme" value="self" checked />
+        <div><strong>Self-consumption</strong><span>Solar energy only saves money when the home uses it. Surplus sent to the grid is not credited, so the battery stores daytime surplus for the night.</span></div>
+      </label>
+      <label class="scheme-opt">
+        <input type="radio" name="scheme" value="net" />
+        <div><strong>Net metering</strong><span>A bidirectional meter credits exported solar against imported kWh. The grid acts as free storage, so the battery adds backup but no extra savings.</span></div>
+      </label>
+    </div>
+  </section>
+
+  <section>
+    <h2>Recommended systems</h2>
+    <p class="sub" id="optsSub"></p>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section class="card">
+    <h2>Monthly bill comparison</h2>
+    <p class="sub">Bill calculated directly from the tier prices below, without fees.</p>
+    <div id="chart"></div>
+  </section>
+
+  <section class="card">
+    <h2>Tariff tiers</h2>
+    <p class="sub">Tiers 1–5 are billed progressively. Above 650 kWh, and again above 1000 kWh, the <em>entire</em> consumption is billed at one flat rate, so the bill jumps at those thresholds.</p>
+    <div class="ladder" id="ladder"></div>
+    <div id="insight"></div>
+  </section>
+
+  <details class="card" id="assumptions">
+    <summary>Assumptions &amp; prices</summary>
+    <div class="assm">
+      <h4>Sizing</h4>
+      <div class="fgrid">
+        <div class="field"><label for="a_nightShare">Night share of consumption (%)</label><input id="a_nightShare" type="number" step="1" min="0" max="100" /></div>
+        <div class="field"><label for="a_yield">PV yield (kWh / kWp / day)</label><input id="a_yield" type="number" step="0.1" min="0.5" /></div>
+        <div class="field"><label for="a_dod">Battery depth of discharge (%)</label><input id="a_dod" type="number" step="1" min="10" max="100" /></div>
+        <div class="field"><label for="a_eff">Round-trip efficiency (%)</label><input id="a_eff" type="number" step="1" min="50" max="100" /></div>
+        <div class="field"><label for="a_battTarget">Battery covers</label>
+          <select id="a_battTarget"><option value="night">Night consumption</option><option value="day">Full day (1 day autonomy)</option></select></div>
+        <div class="field"><label for="a_pvStep">PV rounding step (kWp)</label><input id="a_pvStep" type="number" step="0.05" min="0.05" /></div>
+        <div class="field"><label for="o_pv">Override PV size (kWp)</label><input id="o_pv" type="number" step="0.5" min="0" placeholder="auto" /></div>
+        <div class="field"><label for="o_batt">Override battery</label>
+          <select id="o_batt"><option value="">auto</option></select></div>
+      </div>
+      <h4>Customer prices (EGP)</h4>
+      <div class="fgrid">
+        <div class="field"><label for="p_batt">Battery per kWh</label><input id="p_batt" type="number" step="10" min="0" /></div>
+        <div class="field"><label for="p_pv">Solar PV per kWp</label><input id="p_pv" type="number" step="100" min="0" /></div>
+        <div class="field"><label for="p_inv">Inverter per kW</label><input id="p_inv" type="number" step="100" min="0" /></div>
+        <div class="field"><label for="p_inst">Installation &amp; BOS (% of equipment)</label><input id="p_inst" type="number" step="1" min="0" /></div>
+      </div>
+      <h4>Tariff (EGP / kWh)</h4>
+      <div class="fgrid" id="tariffFields"></div>
+      <div style="margin-top:18px"><button type="button" class="btn" id="resetBtn">Reset to defaults</button></div>
+    </div>
+  </details>
+
+  <section class="card">
+    <h2>How it is calculated</h2>
+    <ul class="notes">
+      <li>A bill is converted to kWh by inverting the tier prices. Fees and future tariff increases are ignored.</li>
+      <li>Daily consumption = monthly kWh ÷ 30. It is split into a daytime and a night-time share.</li>
+      <li><b>Solar only:</b> PV is sized to the daytime load (self-consumption) or to the full consumption (net metering).</li>
+      <li><b>Solar + battery:</b> PV covers the daytime load plus the energy needed to charge the battery. Battery rated capacity = energy needed ÷ (DoD × efficiency), rounded up to the nearest AVESTA LV combination (5.12 / 16 / 32 kWh).</li>
+      <li>Savings = current bill − new bill. Both bills use the same tier table. Payback = system price ÷ annual savings.</li>
+      <li>Backup hours are estimated at the home's average load, so peak loads such as AC will shorten them.</li>
+    </ul>
+  </section>
+</main>
+
+<script>
+(() => {
+  const STORE_KEY = "avesta-home-tiers-v1";
+
+  // Tier boundaries are fixed by the regulator; prices are editable.
+  const TIERS = [
+    { n: 1, from: 0,    to: 50,       label: "0–50",       kind: "Progressive" },
+    { n: 2, from: 50,   to: 100,      label: "51–100",     kind: "Progressive" },
+    { n: 3, from: 100,  to: 200,      label: "101–200",    kind: "Progressive*" },
+    { n: 4, from: 200,  to: 350,      label: "201–350",    kind: "Progressive" },
+    { n: 5, from: 350,  to: 650,      label: "351–650",    kind: "Progressive" },
+    { n: 6, from: 650,  to: 1000,     label: "651–1000",   kind: "Flat on all kWh" },
+    { n: 7, from: 1000, to: Infinity, label: "> 1000",     kind: "Flat on all kWh" },
+  ];
+
+  const BATTERIES = [
+    { id: "LV_5",  kwh: 5.12 },
+    { id: "LV_16", kwh: 16 },
+    { id: "LV_32", kwh: 32 },
+  ];
+
+  const INVERTER_SIZES = [3, 5, 6, 8, 10, 12, 15, 20, 25, 30, 40, 50, 60, 80, 100];
+
+  const DEFAULTS = {
+    inputMode: "bill",
+    inputValue: 2000,
+    scheme: "self",
+    nightShare: 55,
+    yield: 4.8,
+    dod: 80,
+    eff: 95,
+    battTarget: "night",
+    pvStep: 0.5,
+    pvOverride: "",
+    battOverride: "",
+    priceBatt: 13640,
+    pricePv: 8000,
+    priceInv: 6000,
+    priceInst: 10,
+    // Residential tariff effective from the August 2026 bill.
+    rates: [0.68, 0.87, 1.00, 1.73, 2.18, 2.35, 2.89],
+  };
+
+  let state = load();
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw) {
+        const saved = JSON.parse(raw);
+        return { ...structuredClone(DEFAULTS), ...saved, rates: saved.rates?.length === 7 ? saved.rates : [...DEFAULTS.rates] };
+      }
+    } catch (_) {}
+    return structuredClone(DEFAULTS);
+  }
+  function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (_) {} }
+
+  // ---------- Tariff ----------
+  function bill(kwh) {
+    const r = state.rates;
+    const x = Math.max(0, kwh);
+    if (x <= 50) return x * r[0];
+    if (x <= 100) return 50 * r[0] + (x - 50) * r[1];
+    if (x <= 650) {
+      // Above 100 kWh the first 200 kWh lose the tier 1–2 support.
+      return Math.min(x, 200) * r[2]
+        + Math.max(0, Math.min(x, 350) - 200) * r[3]
+        + Math.max(0, x - 350) * r[4];
+    }
+    if (x <= 1000) return x * r[5];
+    return x * r[6];
+  }
+
+  function tierOf(kwh) {
+    return TIERS.find((t) => kwh <= t.to && (kwh > t.from || t.n === 1)) || TIERS[6];
+  }
+
+  // Largest kWh whose bill does not exceed the amount. The bill is non-decreasing,
+  // so a bisection works; amounts that fall inside a jump map to the threshold below it.
+  function kwhFromBill(amount) {
+    if (amount <= 0) return { kwh: 0, gap: null };
+    let lo = 0, hi = 1;
+    while (bill(hi) <= amount && hi < 1e7) hi *= 2;
+    for (let i = 0; i < 60; i++) {
+      const mid = (lo + hi) / 2;
+      if (bill(mid) <= amount) lo = mid; else hi = mid;
+    }
+    const kwh = Math.round(lo * 10) / 10;
+    let gap = null;
+    for (const t of [650, 1000]) {
+      if (Math.abs(kwh - t) < 0.5 && amount - bill(t) > 1) gap = { threshold: t, low: bill(t), high: bill(t + 0.001) };
+    }
+    return { kwh, gap };
+  }
+
+  // ---------- Sizing ----------
+  function roundUp(v, step) { return Math.ceil(v / step - 1e-9) * step; }
+
+  // Build on LV_32 cabinets, topping up with at most one LV_16 and one LV_5,
+  // the stacking the product line is designed for (5 → 16 → 32 → 32 + 16 ...).
+  function pickBattery(required) {
+    let best = null;
+    const max32 = Math.ceil(required / 32) + 1;
+    for (let a = 0; a <= max32; a++) for (let b = 0; b <= 1; b++) for (let c = 0; c <= 1; c++) {
+      const total = a * 32 + b * 16 + c * 5.12;
+      if (total + 1e-9 < Math.max(required, 5.12)) continue;
+      const units = a + b + c;
+      if (!best || total < best.total - 1e-9 || (Math.abs(total - best.total) < 1e-9 && units < best.units)) {
+        best = { total, units, combo: { LV_32: a, LV_16: b, LV_5: c } };
+      }
+    }
+    return best;
+  }
+
+  function comboFromOverride(id) {
+    const combos = overrideOptions();
+    return combos.find((c) => c.key === id) || null;
+  }
+
+  function overrideOptions() {
+    const list = [];
+    for (let a = 0; a <= 6; a++) for (let b = 0; b <= 2; b++) for (let c = 0; c <= 2; c++) {
+      if (!a && !b && !c) continue;
+      const total = a * 32 + b * 16 + c * 5.12;
+      list.push({ key: `${a}-${b}-${c}`, total, units: a + b + c, combo: { LV_32: a, LV_16: b, LV_5: c } });
+    }
+    list.sort((x, y) => x.total - y.total || x.units - y.units);
+    const seen = new Set();
+    return list.filter((c) => { const k = c.total.toFixed(2); if (seen.has(k)) return false; seen.add(k); return true; });
+  }
+
+  function comboLabel(combo) {
+    const parts = [];
+    if (combo.LV_32) parts.push(`${combo.LV_32} × LV_32`);
+    if (combo.LV_16) parts.push(`${combo.LV_16} × LV_16`);
+    if (combo.LV_5) parts.push(`${combo.LV_5} × LV_5`);
+    return parts.join(" + ");
+  }
+
+  function inverterKw(pvKwp) {
+    const need = Math.max(3, pvKwp);
+    return INVERTER_SIZES.find((s) => s >= need - 1e-9) || roundUp(need, 10);
+  }
+
+  function price(pvKwp, battKwh) {
+    const inv = inverterKw(pvKwp);
+    const equip = pvKwp * state.pricePv + battKwh * state.priceBatt + inv * state.priceInv;
+    return { inv, total: equip * (1 + state.priceInst / 100) };
+  }
+
+  // Daily grid import (kWh) for a PV size and usable battery energy.
+  function dailyImport(E, pvKwp, usable) {
+    const gen = pvKwp * state.yield;
+    if (state.scheme === "net") return Math.max(0, E - gen);
+    const night = E * state.nightShare / 100;
+    const day = E - night;
+    const direct = Math.min(gen, day);
+    const surplus = gen - direct;
+    const fromBatt = Math.min(surplus * state.eff / 100, usable, night);
+    return E - direct - fromBatt;
+  }
+
+  function calculate() {
+    let monthly, gap = null;
+    if (state.inputMode === "bill") {
+      const r = kwhFromBill(Number(state.inputValue) || 0);
+      monthly = r.kwh; gap = r.gap;
+    } else {
+      monthly = Math.max(0, Number(state.inputValue) || 0);
+    }
+    const E = monthly / 30;
+    const night = E * state.nightShare / 100;
+    const day = E - night;
+    const dod = state.dod / 100, eff = state.eff / 100;
+    const step = Math.max(0.05, Number(state.pvStep) || 0.5);
+    const currentBill = bill(monthly);
+    const pvOverride = state.pvOverride === "" ? null : Math.max(0, Number(state.pvOverride));
+
+    // Solar only
+    const pvOnlyRaw = state.scheme === "net" ? E / state.yield : day / state.yield;
+    const pvOnly = pvOverride ?? roundUp(pvOnlyRaw, step);
+
+    // Solar + battery
+    const battEnergy = state.battTarget === "day" ? E : night;
+    const battRequired = battEnergy / (dod * eff);
+    const battPick = state.battOverride ? comboFromOverride(state.battOverride) : pickBattery(battRequired);
+    const battKwh = battPick ? battPick.total : 0;
+    const usable = battKwh * dod;
+    const pvBattRaw = state.scheme === "net" ? E / state.yield : (day + Math.min(night, usable) / eff) / state.yield;
+    const pvBatt = pvOverride ?? roundUp(pvBattRaw, step);
+
+    const mk = (pv, bKwh, use) => {
+      const imp = dailyImport(E, pv, use) * 30;
+      const newBill = bill(imp);
+      const cost = price(pv, bKwh);
+      const saving = currentBill - newBill;
+      return {
+        pv, bKwh, usable: use, import: imp, bill: newBill, tier: tierOf(imp), inv: cost.inv,
+        cost: cost.total, saving, annual: saving * 12,
+        payback: saving > 0 ? cost.total / (saving * 12) : null,
+        gen: pv * state.yield * 30,
+        backupH: E > 0 ? use / (E / 24) : 0,
+      };
+    };
+
+    const solar = mk(pvOnly, 0, 0);
+    const hybrid = mk(pvBatt, battKwh, usable);
+    hybrid.combo = battPick?.combo;
+
+    return { monthly, E, day, night, gap, currentBill, tier: tierOf(monthly), solar, hybrid, battRequired };
+  }
+
+  // ---------- Render ----------
+  const $ = (id) => document.getElementById(id);
+  const egp = (v) => `${Math.round(v).toLocaleString("en-US")}`;
+  const num = (v, d = 0) => Number(v).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const yrs = (v) => v == null ? "—" : v > 99 ? "> 99 yrs" : `${num(v, 1)} yrs`;
+
+  function render() {
+    const r = calculate();
+
+    const effRate = r.monthly > 0 ? r.currentBill / r.monthly : 0;
+    $("derived").innerHTML = state.inputMode === "bill"
+      ? `≈ <b>${num(r.monthly)} kWh</b> / month · <b>${num(r.E, 1)} kWh</b> / day · Tier <b>${r.tier.n}</b> (${r.tier.label} kWh)`
+      : `Bill ≈ <b>${egp(r.currentBill)} EGP</b> / month · <b>${num(r.E, 1)} kWh</b> / day · Tier <b>${r.tier.n}</b> (${r.tier.label} kWh)`;
+    if (r.monthly > 0) $("derived").innerHTML += `<br>Average price <b>${num(effRate, 2)} EGP/kWh</b>`;
+    $("gapWarn").innerHTML = r.gap
+      ? `<div class="warn">No consumption gives exactly this bill. At ${r.gap.threshold} kWh the bill jumps from ${egp(r.gap.low)} to ${egp(r.gap.high)} EGP. The tool uses ${r.gap.threshold} kWh; enter the kWh from the bill for a more exact result.</div>`
+      : "";
+
+    // Options
+    const recommend = pickRecommendation(r);
+    $("optsSub").textContent = state.scheme === "net"
+      ? "With net metering the grid stores surplus solar for free, so the battery changes the price and the backup time but not the savings."
+      : "With self-consumption, surplus solar is lost unless a battery stores it for the night.";
+
+    const card = (key, title, sys, bill, tier, extra, note) => `
+      <article class="opt ${recommend === key ? "rec" : ""}">
+        <div class="opt-head"><h3>${title}</h3>${recommend === key ? '<span class="badge">Recommended</span>' : ""}</div>
+        <div class="opt-sys">${sys}</div>
+        <div class="opt-big">${egp(bill)} <small>EGP / month</small></div>
+        <div class="opt-save">${extra}</div>
+        ${tier}
+        <div class="opt-note">${note}</div>
+      </article>`;
+
+    const s = r.solar, h = r.hybrid;
+    const rows = (o) => `
+      <div class="kv"><span>New tier</span><span>Tier ${o.tier.n} · ${num(o.import)} kWh</span></div>
+      <div class="kv"><span>Solar generation</span><span>${num(o.gen)} kWh/mo</span></div>
+      <div class="kv"><span>Inverter</span><span>${o.inv} kW</span></div>
+      <div class="kv"><span>System price</span><span>${egp(o.cost)} EGP</span></div>
+      <div class="kv"><span>Annual savings</span><span>${egp(o.annual)} EGP</span></div>
+      <div class="kv"><span>Simple payback</span><span>${yrs(o.payback)}</span></div>
+      ${o.bKwh ? `<div class="kv"><span>Backup at avg load</span><span>≈ ${num(o.backupH, 1)} h</span></div>` : ""}`;
+
+    $("opts").innerHTML =
+      card("grid", "Grid only (today)", `No solar, no battery`, r.currentBill,
+        `<div class="kv"><span>Tier</span><span>Tier ${r.tier.n} · ${num(r.monthly)} kWh</span></div>
+         <div class="kv"><span>Annual bill</span><span>${egp(r.currentBill * 12)} EGP</span></div>
+         <div class="kv"><span>Average price</span><span>${num(effRate, 2)} EGP/kWh</span></div>`,
+        "", "No protection from outages.")
+      + card("solar", "Solar only", `${num(s.pv, 2)} kWp PV · ${s.inv} kW inverter`, s.bill, rows(s),
+        s.saving > 0 ? `Saves ${egp(s.saving)} EGP / month` : "",
+        "Lowest price and fastest payback. No backup: an on-grid system shuts down during an outage.")
+      + card("hybrid", "Solar + battery", `${num(h.pv, 2)} kWp PV · ${num(h.bKwh, 2)} kWh battery<br>${comboLabel(h.combo || {})}`, h.bill, rows(h),
+        h.saving > 0 ? `Saves ${egp(h.saving)} EGP / month` : "",
+        state.scheme === "net"
+          ? "Same savings as solar only; the extra price buys backup during outages."
+          : `Battery needed ≈ ${num(r.battRequired, 1)} kWh rated to cover ${state.battTarget === "day" ? "the full day" : "the night load"}. Adds backup during outages.`);
+
+    renderChart(r);
+    renderLadder(r);
+  }
+
+  function pickRecommendation(r) {
+    if (r.monthly <= 0) return null;
+    const s = r.solar, h = r.hybrid;
+    if (state.scheme === "net") return "solar";
+    // Prefer the battery system when it recovers its extra price no slower than solar alone.
+    if (h.payback != null && s.payback != null && h.payback <= s.payback * 1.15) return "hybrid";
+    return s.payback != null ? "solar" : null;
+  }
+
+  function renderChart(r) {
+    const items = [
+      { l: "Grid only", v: r.currentBill, c: "var(--ink-400)" },
+      { l: "Solar only", v: r.solar.bill, c: "var(--accent)" },
+      { l: "Solar + battery", v: r.hybrid.bill, c: "var(--green)" },
+    ];
+    const max = Math.max(1, ...items.map((i) => i.v));
+    $("chart").innerHTML = items.map((i) => `
+      <div class="chart-row">
+        <span>${i.l}</span>
+        <div class="bar-track"><div class="bar" style="width:${(i.v / max) * 100}%;background:${i.c}"></div></div>
+        <span class="v">${egp(i.v)} EGP</span>
+      </div>`).join("");
+  }
+
+  function renderLadder(r) {
+    const afterTier = (r.hybrid.bill <= r.solar.bill ? r.hybrid : r.solar).tier.n;
+    $("ladder").innerHTML = TIERS.map((t, i) => {
+      const now = r.monthly > 0 && t.n === r.tier.n;
+      const after = r.monthly > 0 && t.n === afterTier && afterTier !== r.tier.n;
+      return `<div class="rung ${now ? "now" : ""} ${after ? "after" : ""}">
+        ${now ? '<span class="mk" style="background:var(--red)">NOW</span>' : ""}
+        ${after ? '<span class="mk" style="background:var(--green)">WITH SOLAR</span>' : ""}
+        <div class="t">Tier ${t.n}</div>
+        <div class="r">${num(state.rates[i], 2)}</div>
+        <div class="rg">${t.label} kWh</div>
+        <div class="flag">${t.kind}</div>
+      </div>`;
+    }).join("");
+
+    // Show what dropping below the nearest flat-rate threshold is worth.
+    let html = "";
+    const m = r.monthly;
+    const target = m > 1000 ? 1000 : m > 650 ? 650 : null;
+    if (target != null) {
+      const cut = m - target;
+      const saved = r.currentBill - bill(target);
+      html = `<div class="insight">This home is <b>${num(cut)} kWh</b> above the ${target} kWh threshold. Cutting those kWh lowers the bill by <b>${egp(saved)} EGP</b> a month. That is <b>${num(saved / cut, 2)} EGP</b> for each kWh saved, against an average price of ${num(r.currentBill / m, 2)} EGP/kWh. Solar sized just to cross this threshold earns the highest return.</div>`;
+    } else if (m > 100) {
+      html = `<div class="insight">Above 100 kWh the first 200 kWh lose the tier 1–2 support (tier 3 marked *). Bringing consumption to 100 kWh or below lowers the rate on every kWh.</div>`;
+    }
+    $("insight").innerHTML = html;
+  }
+
+  // ---------- Bindings ----------
+  const FIELDS = {
+    a_nightShare: "nightShare", a_yield: "yield", a_dod: "dod", a_eff: "eff", a_pvStep: "pvStep",
+    p_batt: "priceBatt", p_pv: "pricePv", p_inv: "priceInv", p_inst: "priceInst",
+  };
+
+  function buildTariffFields() {
+    $("tariffFields").innerHTML = TIERS.map((t, i) =>
+      `<div class="field"><label for="t_${i}">Tier ${t.n} · ${t.label} kWh</label><input id="t_${i}" data-rate="${i}" type="number" step="0.01" min="0" /></div>`
+    ).join("");
+  }
+
+  function buildOverride() {
+    $("o_batt").innerHTML = '<option value="">auto</option>' + overrideOptions()
+      .map((c) => `<option value="${c.key}">${num(c.total, 2)} kWh · ${comboLabel(c.combo)}</option>`).join("");
+  }
+
+  function syncInputs() {
+    document.querySelectorAll("[data-input-mode]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.inputMode === state.inputMode)));
+    $("mainUnit").textContent = state.inputMode === "bill" ? "EGP" : "kWh";
+    $("mainInput").value = state.inputValue;
+    document.querySelectorAll('input[name="scheme"]').forEach((r) => { r.checked = r.value === state.scheme; });
+    for (const [id, key] of Object.entries(FIELDS)) $(id).value = state[key];
+    $("a_battTarget").value = state.battTarget;
+    $("o_pv").value = state.pvOverride;
+    $("o_batt").value = state.battOverride;
+    state.rates.forEach((v, i) => { $(`t_${i}`).value = v; });
+  }
+
+  function update() { save(); render(); }
+
+  function bind() {
+    document.querySelectorAll("[data-input-mode]").forEach((b) => b.addEventListener("click", () => {
+      if (state.inputMode === b.dataset.inputMode) return;
+      // Carry the value across so the same home stays on screen.
+      const r = calculate();
+      state.inputMode = b.dataset.inputMode;
+      state.inputValue = state.inputMode === "kwh" ? Math.round(r.monthly) : Math.round(r.currentBill);
+      syncInputs(); update();
+    }));
+    $("mainInput").addEventListener("input", (e) => { state.inputValue = e.target.value; update(); });
+    document.querySelectorAll('input[name="scheme"]').forEach((r) => r.addEventListener("change", () => { state.scheme = r.value; update(); }));
+    for (const [id, key] of Object.entries(FIELDS)) {
+      $(id).addEventListener("input", (e) => {
+        const v = Number(e.target.value);
+        if (e.target.value !== "" && Number.isFinite(v)) { state[key] = v; update(); }
+      });
+    }
+    $("a_battTarget").addEventListener("change", (e) => { state.battTarget = e.target.value; update(); });
+    $("o_pv").addEventListener("input", (e) => { state.pvOverride = e.target.value; update(); });
+    $("o_batt").addEventListener("change", (e) => { state.battOverride = e.target.value; update(); });
+    $("tariffFields").addEventListener("input", (e) => {
+      const i = e.target.dataset.rate;
+      const v = Number(e.target.value);
+      if (i != null && e.target.value !== "" && Number.isFinite(v)) { state.rates[i] = v; update(); }
+    });
+    $("resetBtn").addEventListener("click", () => {
+      const keep = { inputMode: state.inputMode, inputValue: state.inputValue, scheme: state.scheme };
+      state = { ...structuredClone(DEFAULTS), ...keep };
+      syncInputs(); update();
+    });
+  }
+
+  buildTariffFields();
+  buildOverride();
+  syncInputs();
+  bind();
+  render();
+
+  // Exposed for quick checks from the console.
+  window.avestaTiers = { bill, kwhFromBill, calculate, pickBattery };
+})();
+</script>
+</body>
+</html>

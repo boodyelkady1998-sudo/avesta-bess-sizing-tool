@@ -3308,5 +3308,25 @@ body.rk-route-active #retail-kiosk-survey-root {
 })();
 
     </script>
+    <script id="avesta-home-tiers-link">
+(() => {
+  // Adds a link to the standalone residential tier page (tiers.html) in every header nav.
+  const addLinks = () => {
+    document.querySelectorAll("#root header nav, .rk-nav").forEach((nav) => {
+      if (nav.querySelector('[data-tiers-link="true"]')) return;
+      const link = document.createElement("a");
+      link.href = "tiers.html";
+      link.dataset.tiersLink = "true";
+      link.textContent = "Home Tier Sizing";
+      const reference = Array.from(nav.querySelectorAll("a")).find((entry) => entry.textContent?.trim() === "Reports");
+      if (reference?.className) link.className = reference.className;
+      if (reference) nav.insertBefore(link, reference);
+      else nav.append(link);
+    });
+  };
+  new MutationObserver(addLinks).observe(document.documentElement, { childList: true, subtree: true });
+  addLinks();
+})();
+    </script>
   </body>
 </html>

@@ -16,3 +16,13 @@ Open `index.html` in a browser, or visit the GitHub Pages link after Pages is en
 - Calculates connected load, compressor startup peak, daily energy, required battery capacity, and recommended inverter rating.
 - Uses Egypt defaults of 230 V / 50 Hz with Cairo and Giza ambient presets.
 - Stores survey edits and optional compressed nameplate photos locally in the browser.
+
+## Home Tier Sizing (`tiers.html`)
+
+A standalone residential page, linked from the main navigation as **Home Tier Sizing**.
+
+- Input: the customer's last bill (EGP) or last month's consumption (kWh).
+- Converts a bill to kWh using the Egyptian residential tariff tiers (fees and future increases ignored).
+- Compares Grid only, Solar only and Solar + AVESTA LV battery: new bill, tier, system price, savings and simple payback.
+- Supports self-consumption and net-metering scenarios.
+- Tariff rates, customer prices and sizing assumptions are editable on the page and stored locally in the browser.
