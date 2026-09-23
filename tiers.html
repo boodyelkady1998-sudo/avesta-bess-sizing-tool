@@ -589,11 +589,10 @@ details[open] summary::after { content: "–"; }
   function bind() {
     document.querySelectorAll("[data-input-mode]").forEach((b) => b.addEventListener("click", () => {
       if (state.inputMode === b.dataset.inputMode) return;
-      // Carry the value across so the same home stays on screen.
-      const r = calculate();
+      // Keep the typed number and read it in the new unit.
       state.inputMode = b.dataset.inputMode;
-      state.inputValue = state.inputMode === "kwh" ? Math.round(r.monthly) : Math.round(r.currentBill);
       syncInputs(); update();
+      $("mainInput").focus();
     }));
     $("mainInput").addEventListener("input", (e) => { state.inputValue = e.target.value; update(); });
     for (const [id, key] of Object.entries(FIELDS)) {
