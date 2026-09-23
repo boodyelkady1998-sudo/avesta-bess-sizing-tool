@@ -24,5 +24,5 @@ A standalone residential page, linked from the main navigation as **Home Tier Si
 - Input: the customer's last bill (EGP) or last month's consumption (kWh).
 - Converts a bill to kWh using the Egyptian residential tariff tiers (fees and future increases ignored).
 - Compares Grid only, Solar only and Solar + AVESTA LV battery: new bill, tier, system price, savings and simple payback.
-- Supports self-consumption and net-metering scenarios.
+- Savings count only solar energy used on site; exported surplus is not credited.
 - Tariff rates, customer prices and sizing assumptions are editable on the page and stored locally in the browser.
