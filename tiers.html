@@ -276,18 +276,36 @@ details[open] summary::after { content: "–"; }
     rates: [0.68, 0.87, 1.00, 1.73, 2.18, 2.35, 2.89],
   };
 
-  let state = load();
+  // Valid range for each editable assumption; values outside it are clamped.
+  const LIMITS = {
+    nightShare: [0, 100], yield: [0.5, 8], dod: [10, 100], eff: [50, 100], pvStep: [0.05, 5],
+    priceBatt: [0, 1e6], pricePv: [0, 1e6], priceInv: [0, 1e6], priceInst: [0, 100],
+  };
+  const RATE_LIMITS = [0, 100];
+
+  function clamp(v, [lo, hi]) { return Math.min(hi, Math.max(lo, v)); }
+
+  function sanitize(s) {
+    for (const [key, range] of Object.entries(LIMITS)) {
+      const v = Number(s[key]);
+      s[key] = Number.isFinite(v) ? clamp(v, range) : DEFAULTS[key];
+    }
+    s.rates = s.rates.map((r, i) => (Number.isFinite(Number(r)) ? clamp(Number(r), RATE_LIMITS) : DEFAULTS.rates[i]));
+    return s;
+  }
 
   function load() {
     try {
       const raw = localStorage.getItem(STORE_KEY);
       if (raw) {
         const saved = JSON.parse(raw);
-        return { ...structuredClone(DEFAULTS), ...saved, rates: saved.rates?.length === 7 ? saved.rates : [...DEFAULTS.rates] };
+        return sanitize({ ...structuredClone(DEFAULTS), ...saved, rates: saved.rates?.length === 7 ? saved.rates : [...DEFAULTS.rates] });
       }
     } catch (_) {}
     return structuredClone(DEFAULTS);
   }
+
+  let state = load();
   function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (_) {} }
 
   // ---------- Tariff ----------
@@ -392,7 +410,8 @@ details[open] summary::after { content: "–"; }
     const direct = Math.min(gen, day);
     const surplus = gen - direct;
     const fromBatt = Math.min(surplus * state.eff / 100, usable, night);
-    return E - direct - fromBatt;
+    // Solar can only reduce what the home draws from the grid.
+    return clamp(E - direct - fromBatt, [0, E]);
   }
 
   function calculate() {
@@ -598,8 +617,12 @@ details[open] summary::after { content: "–"; }
     for (const [id, key] of Object.entries(FIELDS)) {
       $(id).addEventListener("input", (e) => {
         const v = Number(e.target.value);
-        if (e.target.value !== "" && Number.isFinite(v)) { state[key] = v; update(); }
+        if (e.target.value !== "" && Number.isFinite(v)) { state[key] = clamp(v, LIMITS[key]); update(); }
       });
+      // Show the value actually used once the user leaves the field.
+      $(id).addEventListener("change", (e) => { e.target.value = state[key]; });
+      const [lo, hi] = LIMITS[key];
+      $(id).min = lo; $(id).max = hi;
     }
     $("a_battTarget").addEventListener("change", (e) => { state.battTarget = e.target.value; update(); });
     $("o_pv").addEventListener("input", (e) => { state.pvOverride = e.target.value; update(); });
@@ -607,7 +630,11 @@ details[open] summary::after { content: "–"; }
     $("tariffFields").addEventListener("input", (e) => {
       const i = e.target.dataset.rate;
       const v = Number(e.target.value);
-      if (i != null && e.target.value !== "" && Number.isFinite(v)) { state.rates[i] = v; update(); }
+      if (i != null && e.target.value !== "" && Number.isFinite(v)) { state.rates[i] = clamp(v, RATE_LIMITS); update(); }
+    });
+    $("tariffFields").addEventListener("change", (e) => {
+      const i = e.target.dataset.rate;
+      if (i != null) e.target.value = state.rates[i];
     });
     $("resetBtn").addEventListener("click", () => {
       const keep = { inputMode: state.inputMode, inputValue: state.inputValue };
