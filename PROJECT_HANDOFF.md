@@ -2,6 +2,21 @@
 
 Last reviewed: 26 October 2026 (Africa/Cairo).
 
+## Experimental solar-production copy - 26 October 2026
+
+The user subsequently authorized a separate experimental workbook, while retaining the original authoritative workbook and deferring adoption. See `SOLAR_PRODUCTION_SPEC.md` for the trial's equations, sources and decisions.
+
+- Trial: `outputs/solar-trial/AVESTA_Cairo_Seasonal_Solar_Trial.xlsx`.
+- Adds a sixth worksheet, `Solar Production`, with fixed Cairo coordinates and editable tilt and compass azimuth. This extra worksheet is explicitly authorized for the trial.
+- Uses an embedded PVGIS 5.3 / SARAH3 monthly-yield grid (475 orientations, 2005-2023 climate, retrieved 26 October 2026), with native Excel bilinear interpolation. Default: 30-degree tilt, south, crystalline silicon, free-standing, 14% PVGIS system-loss input.
+- Links seasonal production into the existing solar-only and combined monthly models; displays monthly and annual production and bill savings, with annual net savings separately. A study-year selector permits reviewing later years.
+- The original workbook, its original five-sheet structure, and its fixed-yield methodology remain unchanged. The descriptions below continue to describe that authoritative original unless explicitly identified as trial behavior.
+- The user subsequently authorized committing and pushing this trial and its documentation to `excel-sheet-branch`. Adoption remains deferred; the original workbook is retained. Saved scenario values in the trial remain historical captures of the older method.
+- **Next requested step:** remind the user that battery benefit should be evaluated with hourly PV/load/state-of-charge calculations, not monthly energy budgets. This hourly dispatch is not implemented by the solar trial.
+
+Local development and verification evidence: `build/solar-trial/`. These supporting files are not workbook runtime dependencies.
+Eleven recalculated trial cases and independent energy/financial checks passed. Three direct PVGIS spot checks found annual interpolation differences below 0.18% and monthly differences up to 1.28% at those tested angles; these are not universal error bounds. The XLSX passed Open XML SDK validation with zero errors. Microsoft Excel UI behavior remains untested.
+
 ## Start here
 
 This document is the continuation reference for the **Excel solar and battery scenario model**, not the separate web application in this repository. The repository README primarily describes that web application.
