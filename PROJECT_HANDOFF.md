@@ -1,6 +1,27 @@
 # AVESTA Excel Model — Project Handoff
 
-Last reviewed: 26 October 2026 (Africa/Cairo).
+Last reviewed: 1 November 2026 (Africa/Cairo).
+
+## Customer register addition — 1 November 2026
+
+The user authorized adding a `Customers` worksheet to the original authoritative workbook without changing existing work. That workbook now has **six worksheets**: the original five, followed by `Customers`. The separate seasonal-solar trial was not modified. Historical references below to five worksheets describe the previous version.
+
+`Customers` is a manual customer intake and decision register, not a recommendation engine and not automatically linked to `Inputs`. All customer rows are initially blank. It contains a filterable Excel table (`CustomerRegister`, A6:AC31), 25 prepared entry rows, and frozen header rows plus customer ID/name columns. Users may extend the table for more customers; dropdown/numeric validation is prepared through row 1006 and should be extended for entries beyond that range.
+
+| Columns | Contents |
+|---|---|
+| A:C | Customer ID, customer name, customer pain |
+| D:I | Input mode, tariff category, monthly bill, monthly consumption, billing days, pricing basis |
+| J:M | Roof area status and m2, load distribution, daytime energy share |
+| N:Q | Critical-load status, equipment description, critical kW, required backup hours |
+| R:V | Outages/month, typical duration, outage loss in EGP, loss basis (per hour/per outage/per month), supporting assumptions |
+| W:AC | Selected scenario type, saved scenario reference, selected PV/battery/inverter sizes, reason for selection, additional notes |
+
+Leave unknown numeric values blank instead of entering invented zeros. Enter daytime share as a percentage, e.g. `50%`. Copy the appropriate customer's case inputs into the existing model manually, review results and checks, then record the selected scenario and its saved reference. Required backup hours and outage losses are intake information only; their valuation has not been added to model calculations.
+
+Validation: existing worksheet/package parts were preserved byte-for-byte except workbook registration and appended styles; existing style entries retain their IDs and values. Six worksheets, a blank/unprotected customer register, 21 validation rules, filterable table, and frozen pane C7 were verified. Open XML SDK reported zero errors. New customer views were rendered and inspected. Microsoft Excel UI testing remains unavailable. Local implementation/evidence is in `build/customers/` and `build/excel-v1/customers.mjs`; do not blindly rerun an assembler expecting only five original tabs.
+
+This addition is saved locally at the authoritative workbook path; no GitHub push was requested in the creation turn. Check Git state before assuming publication.
 
 ## Experimental solar-production copy - 26 October 2026
 
@@ -21,7 +42,7 @@ Eleven recalculated trial cases and independent energy/financial checks passed. 
 
 This document is the continuation reference for the **Excel solar and battery scenario model**, not the separate web application in this repository. The repository README primarily describes that web application.
 
-The current workbook has five worksheets, a live model for three system types, eight saved manager-design scenarios, and live diagnostic checks. It uses native Excel formulas and requires no Python, VBA, macros, or external scripts for ordinary use. The user manually copies scenario settings and results as values to retain comparisons.
+The current workbook has six worksheets, a live model for three system types, eight saved manager-design scenarios, live diagnostic checks, and a manual customer register. It uses native Excel formulas and requires no Python, VBA, macros, or external scripts for ordinary use. The user manually copies scenario settings and results as values to retain comparisons.
 
 **Communicate with the user in Egyptian Arabic. Keep workbook content, technical identifiers, and this document in English.**
 
@@ -56,7 +77,7 @@ Implemented or explicitly agreed:
 - Unknown critical load does not prevent energy calculations. Backup energy/power can be reported, but backup duration for the unknown load cannot.
 - Outage-loss valuation, automatic sizing optimization, and new dispatch algorithms remain future work.
 
-The original three-worksheet constraint was explicitly superseded when the user requested two additional blank worksheets. The current required structure is **five worksheets**.
+The original three-worksheet constraint was explicitly superseded when the user requested two additional blank worksheets, and again by the customer register request. The current required structure is **six worksheets**.
 
 ## 3. Worksheet and cell map
 
